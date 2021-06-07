@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <van-tabbar route>
+    <van-tabbar route active-color="#fa1951">
       <van-tabbar-item to="/sy" icon="home-o">首页</van-tabbar-item>
       <van-tabbar-item to="/fl" icon="apps-o">分类</van-tabbar-item>
       <van-tabbar-item to="/play" icon="play-circle-o">播放</van-tabbar-item>
