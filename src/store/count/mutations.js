@@ -1,10 +1,5 @@
 export default {
-  radioIdList(state, id) {
-    state.radioId = id;
-  },
-   setnormalPlayerDom(state, payload) {
-      console.log(payload);
-      
-      state.normalplayerdom = payload;
-  },
-};
+   radioIdList(state, id) {
+      state.radioId = id;
+   },
+}
