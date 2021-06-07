@@ -18,10 +18,14 @@
         placeholder="密码"
         :rules="[{ required: true, message: '请填写密码' }]"
       />
-      <div style="margin: 16px; margin-top:210px">
+      <div style="margin: 16px; margin-top:390px;margin-left:28px">
         <van-button round block type="info" native-type="submit"
           >登录</van-button
         >
+      </div>
+      <div class="wangyi">
+        <img src="../../assets/7.jpg" alt="" />
+        <p>网易云音乐</p>
       </div>
     </van-form>
   </div>
@@ -81,24 +85,44 @@ export default {
   background: url(../../assets/音乐.jpg) no-repeat;
   background-size: 375px;
   height: 400px;
-  margin-top: 120px;
 }
 .van-uploader {
   position: absolute;
-  top: 230px;
+  top: 260px;
   left: 150px;
 }
 .van-cell {
-  top: 200px;
-  width: 215px;
+  top: 375px;
+  width: 260px;
   margin: 0 auto;
-  margin-top: 10px;
-  background: rgb(205, 230, 238);
-  border-radius: 6px;
+  background: white;
+  border-radius: 30px;
+  margin-bottom: 6px;
 }
 .van-button {
   width: 115px;
   font-size: 18px;
   margin: 0 auto;
+  background: #fa1951;
+  border: none;
+}
+.wangyi {
+  height: 50px;
+}
+.wangyi img {
+  width: 40px;
+  border-radius: 50px;
+  position: absolute;
+  top: 560px;
+  left: 110px;
+}
+.wangyi p {
+  width: 120px;
+  height: 30px;
+  line-height: 30px;
+  margin-left: 165px;
+  margin-top: 38px;
+  font-size: 22px;
+  color: white;
 }
 </style>
