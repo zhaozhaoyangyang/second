@@ -43,8 +43,8 @@ const router = new VueRouter({
       },
     },
     {
-      path: "/singer",
-      component: () => import("../pages/fl/singer"),
+      path: "/singerr/:id",
+      component: () => import("../pages/fl/singerr"),
       meta: {
         headerShow: false,
         footerShow: false,
