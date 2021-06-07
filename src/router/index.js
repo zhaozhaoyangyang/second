@@ -74,6 +74,22 @@ const router = new VueRouter({
         footerShow: true,
       },
     },
+    {
+      path: "/xiaoxi",
+      component: () => import("../pages/mine/xiaoxi"),
+      meta: {
+        headerShow: false,
+        footerShow: true,
+      },
+    },
+    {
+      path: "/geshou",
+      component: () => import("../pages/mine/geshou"),
+      meta: {
+        headerShow: false,
+        footerShow: true,
+      },
+    },
   ],
   linkActiveClass: "active",
 });

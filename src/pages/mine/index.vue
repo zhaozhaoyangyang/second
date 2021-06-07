@@ -1,7 +1,8 @@
 <template>
   <div class="mine">
     <div class="top">
-      <p>用户名 ></p>
+      <img src="../../assets/2.jpg" alt="" />
+      <p>网易云 ></p>
       <van-icon class="saoma" name="scan" color="black" />
     </div>
     <div class="kaitong">
@@ -11,14 +12,18 @@
       <div class="huiyuan"><span>会员中心</span></div>
     </div>
     <div class="xinxi">
-      <p><van-icon name="envelop-o" /><span>我的消息</span><span>></span></p>
+      <p @click="btn">
+        <van-icon name="envelop-o" /><span>我的消息</span><span>></span>
+      </p>
       <p><van-icon name="envelop-o" /><span>云贝中心</span><span>></span></p>
       <p><van-icon name="envelop-o" /><span>创作者中心</span><span>></span></p>
     </div>
     <div class="yinyue">
       <p>音乐服务</p>
       <p><van-icon name="envelop-o" /><span>云村有票</span><span>></span></p>
-      <p><van-icon name="envelop-o" /><span>商城</span><span>></span></p>
+      <p @click="btnn">
+        <van-icon name="envelop-o" /><span>歌手</span><span>></span>
+      </p>
       <p><van-icon name="envelop-o" /><span>游戏专区</span><span>></span></p>
       <p><van-icon name="envelop-o" /><span>口袋彩铃</span><span>></span></p>
     </div>
@@ -49,7 +54,14 @@ export default {
   computed: {},
   watch: {},
 
-  methods: {},
+  methods: {
+    btn() {
+      this.$router.push("/xiaoxi");
+    },
+    btnn() {
+      this.$router.push("/geshou");
+    },
+  },
   created() {},
   mounted() {},
   beforeCreate() {},
@@ -87,9 +99,16 @@ export default {
   position: fixed;
   z-index: 1;
 }
+.top img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 20px;
+}
 .top p {
-  margin-left: 15px;
-  background: white;
+  margin-left: 68px;
 }
 .kaitong {
   width: 90%;

@@ -1,7 +1,9 @@
 <template>
   <div class="login">
+    <div class="touxiang"></div>
     <van-uploader :after-read="afterRead" v-if="!imgurl" />
-    <img :src="imgurl" alt="" v-else />
+    <img :src="imgurl" class="cimg" alt="" v-else />
+
     <van-form @submit="onSubmit">
       <van-field
         v-model="phone"
@@ -78,13 +80,54 @@ export default {
   min-height: 666px;
   position: relative;
   background: url(../../assets/1.jpg) no-repeat;
-  background-size: 400px;
+  background-size: 470px;
+  background-position: -40px;
+}
+.touxiang {
+  width: 115px;
+  height: 115px;
+  border-radius: 50%;
+  background: rgb(248, 246, 246);
+  position: absolute;
+  top: 242px;
+  left: 132px;
+}
+.cimg {
+  overflow: hidden;
+  width: 118px;
+  height: 118px;
+  border-radius: 50%;
+  position: absolute;
+  top: 240px;
+  left: 130px;
+  animation: turn 3s linear infinite;
+  /* transition: all 1s ease 0s; */
+}
+/* .cimg:hover {
+  transform: translate(200px, 0);
+} */
+@keyframes turn {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 .van-form {
   top: 150px;
   background: url(../../assets/音乐.jpg) no-repeat;
   background-size: 375px;
-  height: 400px;
+  height: 410px;
 }
 .van-uploader {
   position: absolute;
@@ -113,7 +156,7 @@ export default {
   width: 40px;
   border-radius: 50px;
   position: absolute;
-  top: 560px;
+  top: 572px;
   left: 110px;
 }
 .wangyi p {
@@ -121,7 +164,7 @@ export default {
   height: 30px;
   line-height: 30px;
   margin-left: 165px;
-  margin-top: 38px;
+  margin-top: 50px;
   font-size: 22px;
   color: white;
 }

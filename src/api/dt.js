@@ -18,8 +18,9 @@ export const reqToplist = (data) => get("/dj/toplist", data);
 //分类推荐
 export const reqClassify = (data) => get("/dj/recommend/type", data);
 // 电台节目
-export const reqDetail = (data) => get("/dj/program",data);
+export const reqDetail = (data) => get("/dj/program", data);
 //节目详情 获取电台节目后用id调歌曲
 // export const reqDetail = (id) => get("/dj/program/detail" + id);
 // //今日优选
 // export const reqPerfered = () => get("/dj/today/perfered");
+
