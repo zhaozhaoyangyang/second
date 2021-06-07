@@ -16,6 +16,7 @@ const router = new VueRouter({
       meta: {
         headerShow: false,
         footerShow: false,
+        backshow:false
       },
     },
     {
@@ -24,6 +25,7 @@ const router = new VueRouter({
       meta: {
         headerShow: false,
         footerShow: false,
+        backshow:false
       },
     },
     {
@@ -32,6 +34,7 @@ const router = new VueRouter({
       meta: {
         headerShow: false,
         footerShow: true,
+        backshow:false
       },
     },
     {
@@ -40,14 +43,16 @@ const router = new VueRouter({
       meta: {
         headerShow: true,
         footerShow: true,
+        backshow:false
       },
     },
     {
-      path: "/singer",
-      component: () => import("../pages/fl/singer"),
+      path: "/singerr/:id",
+      component: () => import("../pages/fl/singerr"),
       meta: {
         headerShow: false,
         footerShow: false,
+        backshow:true
       },
     },
     {
@@ -56,6 +61,7 @@ const router = new VueRouter({
       meta: {
         headerShow: false,
         footerShow: true,
+        backshow:false
       },
     },
     {
@@ -64,6 +70,7 @@ const router = new VueRouter({
       meta: {
         headerShow: true,
         footerShow: true,
+        backshow:false
       },
     },
     {
@@ -72,6 +79,7 @@ const router = new VueRouter({
       meta: {
         headerShow: false,
         footerShow: true,
+        backshow:false
       },
     },
   ],
