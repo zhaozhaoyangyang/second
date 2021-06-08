@@ -91,30 +91,30 @@ export default {
           picUrl:item.al.picUrl
         }
       }));
-      console.log(this.arr);
+      // console.log(this.arr);
       // this.$store.commit("count/radioIdList", this.arr.id);
     },
     //获取歌手  MV
     async getMv() {
       this.id = this.$route.params.id;
-      console.log(this.id);
+      // console.log(this.id);
       const result = await reqGetMv({ id: this.id });
       this.m = result.data.mvs;
-      console.log(this.m);
+      // console.log(this.m);
     },
     //获取歌手专辑
     async getzj() {
       this.id = this.$route.params.id;
       const result = await reqZj({ id: this.id });
       this.zj = result.data.hotAlbums;
-      console.log(this.zj);
+      // console.log(this.zj);
     },
     //描述
     async getms() {
       this.id = this.$route.params.id;
       const result = await reqMs({ id: this.id });
       this.ms = result.data;
-      console.log(this.ms);
+      // console.log(this.ms);
     },
     //点击歌曲时上传当前下标和整个list到vuex
     songAction(index){
