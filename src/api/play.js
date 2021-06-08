@@ -4,7 +4,7 @@ export const reqRecord  = (id)=>get('/user/record/' +id)
 //心动模式  智能播放
 export const reqList  = (id)=>get('/playmode/intelligence/list/' +id)
 //获取音乐 地址
-export const reqSongUrl = (id)=>get('/song/url/' +id)
+export const reqSongUrl = (id)=>get('/song/url',id)
 //获取歌词
 export const reqSongLyric = (id)=>get('/lyric/' +id)
 //歌曲评论
