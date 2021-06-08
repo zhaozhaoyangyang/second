@@ -54,7 +54,7 @@ export default {
       });
     },
     //id变了重新播放
-    id(newval, oldval) {
+    id(oldval) {
       if (!oldval) {
         return;
       }

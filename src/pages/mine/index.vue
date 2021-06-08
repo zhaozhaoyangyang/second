@@ -8,7 +8,7 @@
         <img src="../../assets/二维码.png" alt="" />
       </p>
 
-      <div class="top1" v-ones="v in obj" :key="v">
+      <div class="top1" :key="obj.userId">
         <img :src="obj.avatarUrl" alt="" />
         <span>{{ obj.nickname }}</span>
       </div>
@@ -24,7 +24,7 @@
         <van-icon name="envelop-o" /><span>我的消息</span><span>></span>
       </p>
       <p><van-icon name="envelop-o" /><span>云贝中心</span><span>></span></p>
-      <p @click="chuangzuo">
+      <p>
         <van-icon name="envelop-o" /><span>创作者中心</span><span>></span>
       </p>
     </div>
