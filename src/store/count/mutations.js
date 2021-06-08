@@ -18,11 +18,5 @@ export default {
   setPlaying(state, payload) {
     state.playing = payload.value;
   },
-      console.log(payload);
-      state.currentIndex = payload.index;
-      state.sequencePlayList=[...payload.list]
-   },
-   setPlaying(state,payload) {
-      state.playing = payload.value
-   }
+   
 };

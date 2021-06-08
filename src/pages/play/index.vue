@@ -1,8 +1,11 @@
 <template>
   <div class="player">
-    <NormarlPlayer  :value='playing' />
-    <MinePlayer  />
-    <audio ref="audio" :src=" `https://music.163.com/song/media/outer/url?id= ${id}.mp3`" />
+    <NormarlPlayer :value="playing" />
+    <MinePlayer />
+    <audio
+      ref="audio"
+      :src="`https://music.163.com/song/media/outer/url?id= ${id}.mp3`"
+    />
   </div>
 </template>
 
@@ -13,32 +16,25 @@ import { mapGetters, mapState } from "vuex";
 export default {
   components: {
     MinePlayer,
-    NormarlPlayer
+    NormarlPlayer,
   },
   data() {
     return {
       play: false,
-      progress: 0.4
+      progress: 0.4,
     };
   },
   computed: {
-
-
-  },
-  watch: {},
-
     ...mapGetters({
       currentSong: "count/currentSong",
-      
     }),
     ...mapState({
-      playing: state => state.count.playing
+      playing: (state) => state.count.playing,
     }),
     id() {
       return this.currentSong.id;
-    }
+    },
   },
-
   watch: {
     //监听playing
     playing(oldval, newval) {
@@ -56,19 +52,15 @@ export default {
       });
     },
     //id变了重新播放
-    id(){
-      this.$nextTick(()=>{
+    id() {
+      this.$nextTick(() => {
         this.audio.load();
         this.audio.play();
-      })
-        
-    }
+      });
+    },
   },
 
-
-  methods: {
-    
-  },
+  methods: {},
   created() {},
   mounted() {
     //渲染完获取audio挂在this上，方便获取
@@ -77,7 +69,7 @@ export default {
   beforeCreate() {},
   beforeMount() {},
   beforeUpdate() {},
-  updated() {}
+  updated() {},
 };
 </script>
 <style scoped></style>
