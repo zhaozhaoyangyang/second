@@ -5,25 +5,30 @@
     <!-- 内部歌曲图片 -->
     <canvas class="canvas" ref="canvas"></canvas>
     <div class="mini-icon">
-      <img :src="al.picUrl" :class="{ pause: value }" @click="changeAction" />
+      <img :src="currentSong.al.picUrl" :class="{ pause: playing }" @click="changeAction" />
     </div>
     <!-- </div> -->
   </div>
 </template>
 <script>
+import {mapState, mapGetters} from 'vuex'
 export default {
   components: {},
-  props: ["value", "progress"],
+ props:['value'],
   data() {
     return {
       context: null,
-      al: {
-        picUrl:
-          "https://p1.music.126.net/uOAROZ8Ia72yvcmfMIg_Uw==/125344325570003.jpg",
-      },
+      progress:0.2,
     };
   },
-  computed: {},
+  computed: {
+    ...mapState({
+      playing:(state)=>state.count.playing
+    }),
+    ...mapGetters({
+      currentSong:'count/currentSong'
+    })
+  },
   watch: {
     progress() {
       //progress变化要重新绘制
@@ -33,7 +38,11 @@ export default {
 
   methods: {
     changeAction() {
-      this.$emit("input", !this.value);
+      const action=this.value=!this.value;
+      this.$store.commit({
+        type:'count/setPlaying',
+        action
+      });
     },
     renderCircle(context) {
       //每次绘制之前清除上一次的绘制

@@ -1,35 +1,77 @@
 <template>
   <div class="player">
-    <NormarlPlayer v-model="play" :progress='progress'/>
-    <MinePlayer v-model="play" :progress='progress' />
-    <audio ref="audio" src="http://m7.music.126.net/20210607101953/1c652b65755808858bb0319870776874/ymusic/0fd6/4f65/43ed/a8772889f38dfcb91c04da915b301617.mp3"/>
+    <NormarlPlayer  :value='playing' />
+    <MinePlayer  />
+    <audio ref="audio" :src=" `https://music.163.com/song/media/outer/url?id= ${id}.mp3`" />
   </div>
 </template>
 
 <script>
 import MinePlayer from "./miniplayer";
 import NormarlPlayer from "./normalplayer";
+import { mapGetters, mapState } from "vuex";
 export default {
   components: {
     MinePlayer,
-    NormarlPlayer,
+    NormarlPlayer
   },
   data() {
     return {
       play: false,
-      progress:0.4
+      progress: 0.4
     };
   },
-  computed: {},
-  watch: {},
+  computed: {
+    ...mapGetters({
+      currentSong: "count/currentSong",
+      
+    }),
+    ...mapState({
+      playing: state => state.count.playing
+    }),
+    id() {
+      return this.currentSong.id;
+    }
+  },
 
-  methods: {},
+  watch: {
+    //监听playing
+    playing(oldval, newval) {
+      this.$nextTick(() => {
+        if (!oldval) {
+          return;
+        }
+        this.$nextTick();
+        if (newval) {
+          //为true播放音乐
+          this.audio.play();
+        } else {
+          this.audio.pause();
+        }
+      });
+    },
+    //id变了重新播放
+    id(){
+      this.$nextTick(()=>{
+        this.audio.load();
+        this.audio.play();
+      })
+        
+    }
+  },
+
+  methods: {
+    
+  },
   created() {},
-  mounted() {},
+  mounted() {
+    //渲染完获取audio挂在this上，方便获取
+    this.audio = this.$refs.audio;
+  },
   beforeCreate() {},
   beforeMount() {},
   beforeUpdate() {},
-  updated() {},
+  updated() {}
 };
 </script>
 <style scoped></style>
