@@ -1,53 +1,59 @@
 <template>
-  <div class="mini-player">
-    <!-- 专辑形状背景 -->
-    <!-- <div class="mini-boreder"> -->
-    <!-- 内部歌曲图片 -->
-    <canvas class="canvas" ref="canvas"></canvas>
-    <div class="mini-icon">
-      <img :src="currentSong.al.picUrl" :class="{ pause: !playing }" @click="changeAction" />
+  <div class="miniplayer" ref="mini">
+    <div class="mini">
+      <canvas class="canvas" ref="canvas"></canvas>
+
+      <div class="mini-icon">
+        <img
+          :src="currentSong.al.picUrl"
+          :class="{ pause: !playing }"
+          @click="changeAction"
+        />
+      </div>
     </div>
-    <!-- </div> -->
   </div>
 </template>
 <script>
-import {mapState, mapGetters} from 'vuex'
+import { mapState, mapGetters } from "vuex";
 export default {
   components: {},
-
+  props: ["progress"],
   data() {
     return {
-      context: null,
-      progress:0.2,
-      // picUrl:"https://p1.music.126.net/uOAROZ8Ia72yvcmfMIg_Uw==/125344325570003.jpg"
+      context: "",
     };
   },
   computed: {
     ...mapState({
-      playing:(state)=>state.count.playing
+      playing: (state) => state.count.playing,
+      isshowbig: (state) => state.count.fullScreen,
     }),
     ...mapGetters({
-      currentSong:'count/currentSong'
-    })
+      currentSong: "count/currentSong",
+    }),
   },
   watch: {
     progress() {
       //progress变化要重新绘制
       this.renderCircle(this.context);
     },
+    isshowbig(newval) {
+      
+      if (newval) {
+        this.mini.style.opacity = 0;
+      } else {
+        this.mini.style.opacity = 1;
+      }
+    },
   },
 
   methods: {
     changeAction() {
-      const action=this.playing=!this.playing;
-      console.log(action);
-      this.$store.commit('count/setPlaying',action);
+      this.$store.commit("count/setFullScreen", !this.isshowbig);
     },
-
-
     renderCircle(context) {
       //每次绘制之前清除上一次的绘制
-    context.clearRect(0,0,50,50)
+      context.clearRect(0, 0, 50, 50);
       //绘制圆环作为背景
       context.save();
       context.beginPath();
@@ -85,23 +91,27 @@ export default {
     },
   },
   created() {},
+
   mounted() {
+    this.mini = this.$refs.mini;
+  },
+  beforeCreate() {},
+  beforeMount() {},
+  beforeUpdate() {},
+  updated() {
     const canvas = this.$refs.canvas;
     canvas.width = 50;
     canvas.height = 50;
+
     //获取上下文
     const context = canvas.getContext("2d");
     this.context = context;
     this.renderCircle(context);
   },
-  beforeCreate() {},
-  beforeMount() {},
-  beforeUpdate() {},
-  updated() {},
 };
 </script>
 <style scoped>
-.mini-player {
+.mini {
   position: fixed;
   bottom: 20px;
   left: 50%;
@@ -109,19 +119,17 @@ export default {
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  z-index: 1000;
+  z-index: 800;
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
-/* .mini-player {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url("../../assets/disc.png");
-  background-size: 100%;
-} */
 
+.miniplayer{
+  transition: all 1.5s;
+  opacity: 1;
+}
 .canvas {
   position: absolute;
   left: 0;

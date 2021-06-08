@@ -7,12 +7,13 @@
       <van-tabbar-item to="/radio" icon="service-o">电台</van-tabbar-item>
       <van-tabbar-item to="/mine" icon="manager-o">我的</van-tabbar-item>
     </van-tabbar>
-    <Player/>
+    <Player v-if="showplayer"/>
   </div>
 </template>
 
 <script>
 import Player from '../pages/play'
+import {mapState} from 'vuex'
 export default {
   components: {
     Player
@@ -20,7 +21,11 @@ export default {
   data() {
     return {};
   },
-  computed: {},
+  computed: {
+    ...mapState({
+      showplayer:state=>(state.count.currentIndex>=0)
+    })
+  },
   watch: {},
 
   methods: {},

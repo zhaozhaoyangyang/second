@@ -17,6 +17,9 @@ export default {
   },
 
   setPlaying(state, payload) {
-    state.playing = payload.value;
+    state.playing = payload;
   },
+  setFullScreen(state, payload) {
+    state.fullScreen = payload;
+  }
 };

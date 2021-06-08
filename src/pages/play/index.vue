@@ -1,8 +1,8 @@
 <template>
   <div class="player">
-    <NormarlPlayer  />
-    <MinePlayer />
-    <audio ref="audio" :src="musicUrl"/>
+    <NormarlPlayer :progress='progress'/>
+    <MinePlayer :progress='progress'/>
+    <audio ref="audio" :src="musicUrl" />
   </div>
 </template>
 
@@ -10,7 +10,7 @@
 import MinePlayer from "./miniplayer";
 import NormarlPlayer from "./normalplayer";
 import { mapGetters, mapState } from "vuex";
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   components: {
@@ -20,8 +20,9 @@ export default {
   data() {
     return {
       play: false,
-      progress: 0.4,
-      musicUrl:'',
+      musicUrl: "",
+      currentTime:0,
+      totalTime:0
     };
   },
   computed: {
@@ -34,15 +35,16 @@ export default {
     id() {
       return this.currentSong.id;
     },
+    progress(){
+      const result = this.currentTime/this.totalTime;
+      return isNaN(result)?0:result
+    }
   },
   watch: {
     //监听playing
-    playing( newval,oldval) {
-      console.log(oldval,newval);
-      console.log(this.playing);
-      
+    playing(newval) {
+      this.getMusic();
       this.$nextTick(() => {
-         this.getMusic()
         if (newval) {
           //为true播放音乐
           this.audio.play();
@@ -52,10 +54,12 @@ export default {
       });
     },
     //id变了重新播放
-    id() {
-
+    id(newval, oldval) {
+      if (!oldval) {
+        return;
+      }
       this.$nextTick(() => {
-        this.getMusic()
+        this.getMusic();
         this.audio.load();
         this.audio.play();
       });
@@ -63,22 +67,29 @@ export default {
   },
 
   methods: {
-    async getMusic(){
-       console.log(this.id);
-      const result = await axios.get('http://localhost:3000/song/url',{
-        params:{
-          id:this.id
-        }
-      })
-      this.musicUrl=result.data.data[0].url;
-    }
+    async getMusic() {
+      console.log(this.id);
+      const result = await axios.get("http://localhost:3000/song/url", {
+        params: {
+          id: this.id,
+        },
+      });
+      this.musicUrl = result.data.data[0].url;
+    },
   },
-  created() {
-   
-  },
+  created() {},
   mounted() {
     //渲染完获取audio挂在this上，方便获取
     this.audio = this.$refs.audio;
+
+    this.audio.addEventListener('canplay',()=>{
+      // console.log(this.audio.duration);
+      this.totalTime = this.audio.duration
+    })
+    this.audio.addEventListener('timeupdate',()=>{
+      // console.log(this.audio.currentTime);
+      this.currentTime = this.audio.currentTime
+    })
   },
   beforeCreate() {},
   beforeMount() {},
