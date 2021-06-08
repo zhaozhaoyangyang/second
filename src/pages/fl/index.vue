@@ -73,28 +73,34 @@
       <van-tab title="歌单" name="b">
         <h2>全部歌单</h2>
         <div class="big">
-          <div class="small" v-for="v in obj.slice(0,10)" :key="v.id">
-            <img :src="v.picUrl" alt="">
-            <p>{{v.name}}</p>
+          <div class="small" v-for="v in obj.slice(0, 10)" :key="v.id">
+            <img :src="v.picUrl" alt="" />
+            <p>{{ v.name }}</p>
           </div>
         </div>
       </van-tab>
       <van-tab title="新碟上架" name="c">
-        
+        <div class="one">
+          <div class="two" v-for="v in diepian.slice(0,10)" :key="v.id">
+            <img :src="v.picUrl" alt="" />
+            <p>{{ v.name }}</p>
+          </div>
+        </div>
       </van-tab>
     </van-tabs>
   </div>
 </template>
 
 <script>
-import { getSinger,reqGd } from "../../api/fl";
+import { getSinger, reqGd, reqDd } from "../../api/fl";
 export default {
   components: {},
   data() {
     return {
       activeName: "a",
       arr: [],
-      obj:""
+      obj: "",
+      diepian: "",
     };
   },
   computed: {},
@@ -110,25 +116,42 @@ export default {
     btn(id) {
       this.$router.push("/singerr/" + id);
     },
+      //缓存
+//       activated() {
+//   if(!this.$route.meta.isUseCache){ //isUseCache 时添加中router中的元信息，判读是否要缓存
+//     this.fl = [] //清空原有数据
+//     this.onload() // 重新加载
+//   }
+// }
+// ,
+// // 列表页面跳转到 详情页时，设置需要缓存
+// beforeRouteLeave(to, from, next){
+//   if(to.name=='singerr'){
+//     from.meta.isUseCache = true
+//   }
+//   next()
+// },
+
+
     //歌单
-    async getGd(){
-      const result = await reqGd()
+    async getGd() {
+      const result = await reqGd();
       // console.log(result);
-      this.obj = result.data.result
+      this.obj = result.data.result;
       console.log(this.obj);
     },
     //新碟
-    // async getdd(){
-    //   const result = await reqDd()
-    //   console.log(result);
-    // }
-    
+    async getdd() {
+      const result = await reqDd();
+      this.diepian = result.data.albums;
+    },
   },
   created() {
     this.getsing();
-    this.getGd()
-    // this.getdd()
+    this.getGd();
+    this.getdd();
   },
+  
   mounted() {},
   beforeCreate() {},
   beforeMount() {},
@@ -210,7 +233,8 @@ ul {
   flex-wrap: wrap;
   justify-content: space-around;
 }
-.big{
+.big,
+.one {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -218,25 +242,27 @@ ul {
   justify-content: space-around;
   margin: 10px 0;
 }
-.small{
+.small,
+.two {
   width: 43%;
-
 }
-.small p{
+.small p,
+.two p {
   text-align: center;
-    overflow: hidden;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   margin: 15px 0;
 }
-.small img{
+.small img,
+.two img {
   width: 100%;
 }
-h2{
+h2 {
   width: 90%;
   height: 30px;
   line-height: 30px;
-  margin: 20px   auto  10px;
+  margin: 20px auto 10px;
   border-bottom: 3px solid black;
 }
 </style>
