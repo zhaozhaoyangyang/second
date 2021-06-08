@@ -62,6 +62,7 @@ export default {
       if (result.status === 200) {
         Toast("登陆成功");
         setToken(result.data.token);
+        console.log(result.data.token);
         this.$router.push("/sy");
       }
     },

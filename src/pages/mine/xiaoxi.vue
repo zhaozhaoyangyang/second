@@ -1,6 +1,6 @@
 <template>
   <div class="xiaoxi">
-    <div class="top" v-for="v in obj.slice(0, 10)" :key="v.id">
+    <div class="top" v-for="v in obj.slice(0, 30)" :key="v.id">
       <img :src="v.al.picUrl" alt="" />
       <span>{{ v.name }}</span>
     </div>
@@ -38,10 +38,17 @@ export default {
 };
 </script>
 <style scoped>
+.top {
+  float: left;
+}
 .top img {
-  width: 200px;
+  width: 180px;
+  display: flex;
+  margin-left: 5px;
+  margin-top: 5px;
 }
 .top span {
   font-size: 10px;
+  margin-left: 5px;
 }
 </style>
