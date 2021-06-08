@@ -13,10 +13,10 @@ export default {
     console.log(payload);
     state.currentIndex = payload.index;
     state.sequencePlayList = [...payload.list];
+    state.playing = true;
   },
 
   setPlaying(state, payload) {
     state.playing = payload.value;
   },
-   
 };

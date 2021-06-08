@@ -122,11 +122,7 @@ export default {
         index,
         list:this.arr
       }
-      console.log(data);
-      this.$store.commit({
-        type:'count/selectSongByIndex',
-        data
-      })
+      this.$store.commit('count/selectSongByIndex',data)
     }
   },
   created() {

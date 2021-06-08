@@ -5,7 +5,7 @@
     <!-- 内部歌曲图片 -->
     <canvas class="canvas" ref="canvas"></canvas>
     <div class="mini-icon">
-      <img :src="currentSong.al.picUrl" :class="{ pause: playing }" @click="changeAction" />
+      <img :src="currentSong.al.picUrl" :class="{ pause: !playing }" @click="changeAction" />
     </div>
     <!-- </div> -->
   </div>
@@ -14,7 +14,7 @@
 import {mapState, mapGetters} from 'vuex'
 export default {
   components: {},
- props:['value'],
+
   data() {
     return {
       context: null,
@@ -38,12 +38,12 @@ export default {
 
   methods: {
     changeAction() {
-      const action=this.value=!this.value;
-      this.$store.commit({
-        type:'count/setPlaying',
-        action
-      });
+      const action=this.playing=!this.playing;
+      console.log(action);
+      this.$store.commit('count/setPlaying',action);
     },
+
+
     renderCircle(context) {
       //每次绘制之前清除上一次的绘制
     context.clearRect(0,0,50,50)

@@ -1,11 +1,8 @@
 <template>
   <div class="player">
-    <NormarlPlayer :value="playing" />
+    <NormarlPlayer  />
     <MinePlayer />
-    <audio
-      ref="audio"
-      :src="`https://music.163.com/song/media/outer/url?id= ${id}.mp3`"
-    />
+    <audio ref="audio" :src="musicUrl"/>
   </div>
 </template>
 
@@ -13,6 +10,8 @@
 import MinePlayer from "./miniplayer";
 import NormarlPlayer from "./normalplayer";
 import { mapGetters, mapState } from "vuex";
+import axios from 'axios';
+
 export default {
   components: {
     MinePlayer,
@@ -22,6 +21,7 @@ export default {
     return {
       play: false,
       progress: 0.4,
+      musicUrl:'',
     };
   },
   computed: {
@@ -37,12 +37,12 @@ export default {
   },
   watch: {
     //监听playing
-    playing(oldval, newval) {
+    playing( newval,oldval) {
+      console.log(oldval,newval);
+      console.log(this.playing);
+      
       this.$nextTick(() => {
-        if (!oldval) {
-          return;
-        }
-        this.$nextTick();
+         this.getMusic()
         if (newval) {
           //为true播放音乐
           this.audio.play();
@@ -53,15 +53,29 @@ export default {
     },
     //id变了重新播放
     id() {
+
       this.$nextTick(() => {
+        this.getMusic()
         this.audio.load();
         this.audio.play();
       });
     },
   },
 
-  methods: {},
-  created() {},
+  methods: {
+    async getMusic(){
+       console.log(this.id);
+      const result = await axios.get('http://localhost:3000/song/url',{
+        params:{
+          id:this.id
+        }
+      })
+      this.musicUrl=result.data.data[0].url;
+    }
+  },
+  created() {
+   
+  },
   mounted() {
     //渲染完获取audio挂在this上，方便获取
     this.audio = this.$refs.audio;
