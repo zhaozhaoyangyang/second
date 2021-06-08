@@ -3,10 +3,10 @@
      <Back v-if="$route.meta.backshow"></Back>
     <Head v-if="$route.meta.headerShow"></Head>
 
-    <keep-alive>
-    <router-view v-if="$route.meta.keepAlive"></router-view>
-    </keep-alive>
-     <router-view v-if="!$route.meta.keepAlive"></router-view>
+ 
+    <router-view></router-view>
+    
+     <!-- <router-view v-if="!$route.meta.keepAlive"></router-view> -->
     <Foot v-if="$route.meta.footerShow"></Foot>
    
   </div>
