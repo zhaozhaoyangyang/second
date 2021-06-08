@@ -9,15 +9,15 @@ export default {
 
   // play组件共享数据
   fullScreen: false, //是否显示大播放器
-  playing: false, //是否正在播放
+  playing: false, //是否播放   点击歌曲时设置为true
   playList: [], //播放列表,
   sequencePlayList: [], //顺序歌曲列表
   mode: playMode.sequence,
   currentIndex: -1, //当前播放音乐在歌曲列表的下标
   currentSong: {}, //当前歌曲信息
 };
-/*  需要上传 
-currentSong  格式
+/*  需要上传 currentSong  currentIndex sequencePlayList
+ currentSong 格式
 {
   al:{
   name,//歌曲名

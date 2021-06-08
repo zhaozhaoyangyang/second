@@ -47,9 +47,10 @@ export default {
   components: {
     BarProgress
   },
-  props:['value','progress'],
+ 
   data() {
     return {
+      
       love:false,
       a:0.2,
       al: {
