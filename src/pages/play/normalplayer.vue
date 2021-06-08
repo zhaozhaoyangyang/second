@@ -1,12 +1,19 @@
 <template>
-  <div :class="{normalplay:true,normalplayup:fullScreen,normalplaydown:!fullScreen}" ref="normalplay">
+  <div
+    :class="{
+      normalplay: true,
+      normalplayup: fullScreen,
+      normalplaydown: !fullScreen,
+    }"
+    ref="normalplay"
+  >
     <div class="header">
       <i class="icon-down" @click="downfull">
         <img src="../../assets/down.png" alt="" />
       </i>
       <div class="desc">
         <h2>{{ currentSong.al.name }}</h2>
-        <p>{{currentSong.ar}}</p>
+        <p>{{ currentSong.ar }}</p>
       </div>
       <i class="icon-meu">
         <img src="../../assets/meu.png" alt="" />
@@ -14,7 +21,7 @@
     </div>
     <div class="content">
       <div class="pic">
-        <img :src="currentSong.al.picUrl" alt="" :class="{ pause: !playing }"/>
+        <img :src="currentSong.al.picUrl" alt="" :class="{ pause: !playing }" />
       </div>
       <!-- <ul class="geci">
         <li class="geciactive">老鼠爱大米</li>
@@ -22,14 +29,17 @@
       </ul> -->
     </div>
     <div class="playcontrol">
-        <div class="jindu">
-            <bar-progress v-model="a"/>
-        </div>
-        <div class="control">
-            <i class="icon-from"></i>
-            <i :class="{'icon-puase':!playing,'icon-play':playing}" @click="changeAction"></i>
-            <i class="icon-next"></i>
-        </div>
+      <div class="jindu">
+        <bar-progress v-model="a" />
+      </div>
+      <div class="control">
+        <i class="icon-from"></i>
+        <i
+          :class="{ 'icon-puase': !playing, 'icon-play': playing }"
+          @click="changeAction"
+        ></i>
+        <i class="icon-next"></i>
+      </div>
     </div>
     <div class="footer">
       <i class="icon-enjoy"></i>
@@ -45,17 +55,17 @@
 </template>
 
 <script>
-import BarProgress from './children/bar-progress';
-import {mapState, mapGetters} from 'vuex'
+import BarProgress from "./children/bar-progress";
+import { mapState, mapGetters } from "vuex";
 export default {
   components: {
     BarProgress,
   },
- props:['progress'],
+  props: ["progress"],
   data() {
     return {
-      love:false,
-      a:0,
+      love: false,
+      a: 0,
       al: {
         name: "Your Head Smells Good",
         picUrl:
@@ -65,44 +75,38 @@ export default {
   },
   computed: {
     ...mapState({
-      playing:(state)=>state.count.playing,
-      fullScreen:state=>state.count.fullScreen
+      playing: (state) => state.count.playing,
+      fullScreen: (state) => state.count.fullScreen,
     }),
     ...mapGetters({
-      currentSong:'count/currentSong'
+      currentSong: "count/currentSong",
     }),
-    
   },
   watch: {
-      progress(){
+    progress() {
       this.a = this.progress;
-    }
+    },
   },
 
   methods: {
-    downfull(){
-      this.$store.commit('count/setFullScreen',!this.fullScreen)
+    downfull() {
+      this.$store.commit("count/setFullScreen", !this.fullScreen);
     },
-      changeAction(){
-           this.$store.commit('count/setPlaying',!this.playing);
-           console.log(this.a);
-           
-      }
+    changeAction() {
+      this.$store.commit("count/setPlaying", !this.playing);
+      console.log(this.a);
+    },
   },
   created() {},
-  mounted() {
-  },
+  mounted() {},
   beforeCreate() {},
   beforeMount() {},
   beforeUpdate() {},
-  updated() {
-    
-    
-  },
+  updated() {},
 };
 </script>
 <style scoped>
-.normalplay{
+.normalplay {
   position: fixed;
   left: 0;
   top: 0;
@@ -111,12 +115,11 @@ export default {
   z-index: 1000;
   background: #ffffff;
   transition: all 1s;
- 
 }
-.normalplaydown{
+.normalplaydown {
   transform: translateY(100%);
 }
-.normalplayup{
+.normalplayup {
   transform: translateY(0);
 }
 .header {

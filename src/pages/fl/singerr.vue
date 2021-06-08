@@ -7,8 +7,6 @@
       <van-tabs v-model="active">
         <van-tab title="热门作品">
           <ul class="list">
-            <li v-for="v in arr" :key="v.id"></li>
-
             <li v-for="(v, i) in arr" :key="v.id" @click="songAction(i)">
               {{ v.name }}<van-icon class="icon" name="play-circle-o" />
             </li>
@@ -43,6 +41,7 @@
         </van-tab>
       </van-tabs>
     </div>
+
     <Player v-if="showplayer" />
   </div>
 </template>
@@ -50,6 +49,7 @@
 <script>
 import Player from "../play";
 import { mapState } from "vuex";
+
 import {
   reqGetSinger,
   reqHotSings,
@@ -58,8 +58,6 @@ import {
   reqMs,
 } from "../../api/fl";
 export default {
-  components: {},
-
   components: { Player },
   data() {
     return {
@@ -67,17 +65,13 @@ export default {
       active: 2,
       obj: null,
 
-      arr: "",
-
       arr: [],
-
       m: "",
       zj: "",
       ms: "",
     };
   },
 
-  computed: {},
   computed: {
     ...mapState({
       showplayer: (state) => state.count.currentIndex >= 0,
@@ -96,7 +90,7 @@ export default {
     async gethotsongs() {
       this.id = this.$route.params.id;
       const result = await reqHotSings({ id: this.id });
-      this.arr = [];
+
       this.arr = result.data.songs;
       console.log(this.arr);
       this.$store.commit("count/radioIdList", this.arr.id);
@@ -108,6 +102,14 @@ export default {
           name: item.al.name,
           picUrl: item.al.picUrl,
         },
+        // this.arr = result.data.songs.map((item)=>({
+        //   id:item.id,
+        //   name:item.name,
+        //   ar:item.ar.map(v=>v.name).join('/'),
+        //   al:{
+        //     name:item.al.name,
+        //     picUrl:item.al.picUrl
+        //   }
       }));
       // console.log(this.arr);
       // this.$store.commit("count/radioIdList", this.arr.id);
@@ -119,7 +121,7 @@ export default {
       const result = await reqGetMv({ id: this.id });
       this.m = result.data.mvs;
       console.log(this.m); // console.log(this.id);
-      
+
       // console.log(this.m);
     },
     //获取歌手专辑
@@ -127,9 +129,6 @@ export default {
       this.id = this.$route.params.id;
       const result = await reqZj({ id: this.id });
       this.zj = result.data.hotAlbums;
-
-      console.log(this.zj);
-
       // console.log(this.zj);
     },
     //描述
@@ -140,6 +139,7 @@ export default {
       // console.log(this.ms);
     },
     //点击歌曲时上传当前下标和整个list到vuex
+
     songAction(index) {
       const data = {
         index,

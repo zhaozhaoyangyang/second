@@ -1,27 +1,25 @@
 <template>
   <div id="app">
-     <Back v-if="$route.meta.backshow"></Back>
+    <Back v-if="$route.meta.backshow"></Back>
     <Head v-if="$route.meta.headerShow"></Head>
 
-    <keep-alive>
-    <router-view v-if="$route.meta.keepAlive"></router-view>
-    </keep-alive>
-     <router-view v-if="!$route.meta.keepAlive"></router-view>
+    <router-view></router-view>
+
+    <!-- <router-view v-if="!$route.meta.keepAlive"></router-view> -->
     <Foot v-if="$route.meta.footerShow"></Foot>
-   
   </div>
 </template>
 
 <script>
 import Foot from "./components/footer.vue";
 import Head from "./components/header.vue";
-import Back from './components/back.vue'
+import Back from "./components/back.vue";
 export default {
   name: "App",
   components: {
     Head,
     Foot,
-    Back
+    Back,
   },
   provide() {
     return {
@@ -44,6 +42,4 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

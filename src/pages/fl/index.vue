@@ -116,21 +116,6 @@ export default {
     btn(id) {
       this.$router.push("/singerr/" + id);
     },
-    //缓存
-    //       activated() {
-    //   if(!this.$route.meta.isUseCache){ //isUseCache 时添加中router中的元信息，判读是否要缓存
-    //     this.fl = [] //清空原有数据
-    //     this.onload() // 重新加载
-    //   }
-    // }
-    // ,
-    // // 列表页面跳转到 详情页时，设置需要缓存
-    // beforeRouteLeave(to, from, next){
-    //   if(to.name=='singerr'){
-    //     from.meta.isUseCache = true
-    //   }
-    //   next()
-    // },  啥也不是
 
     //歌单
     async getGd() {

@@ -10,12 +10,14 @@ const originalReplace = VueRouter.prototype.replace;
 VueRouter.prototype.push = function push(location, onResolve, onReject) {
   if (onResolve || onReject)
     return originalPush.call(this, location, onResolve, onReject);
+
   return originalPush.call(this, location).catch((err) => err);
 };
 //replace
 VueRouter.prototype.replace = function push(location, onResolve, onReject) {
   if (onResolve || onReject)
     return originalReplace.call(this, location, onResolve, onReject);
+
   return originalReplace.call(this, location).catch((err) => err);
 };
 
@@ -44,7 +46,6 @@ const router = new VueRouter({
         headerShow: false,
         footerShow: false,
         backshow: false,
-        backshow: false,
         keepAlive: false,
       },
     },
@@ -54,6 +55,7 @@ const router = new VueRouter({
       meta: {
         headerShow: false,
         footerShow: true,
+
         backshow: false,
         keepAlive: false,
       },
@@ -75,6 +77,7 @@ const router = new VueRouter({
       meta: {
         headerShow: false,
         footerShow: false,
+
         backshow: true,
         keepAlive: false,
       },
@@ -94,6 +97,7 @@ const router = new VueRouter({
       meta: {
         headerShow: true,
         footerShow: true,
+
         backshow: false,
         keepAlive: true,
       },
@@ -104,6 +108,7 @@ const router = new VueRouter({
       meta: {
         headerShow: false,
         footerShow: true,
+
         backshow: false,
       },
     },
