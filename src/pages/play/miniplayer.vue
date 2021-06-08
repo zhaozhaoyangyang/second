@@ -19,6 +19,7 @@ export default {
     return {
       context: null,
       progress:0.2,
+      // picUrl:"https://p1.music.126.net/uOAROZ8Ia72yvcmfMIg_Uw==/125344325570003.jpg"
     };
   },
   computed: {
