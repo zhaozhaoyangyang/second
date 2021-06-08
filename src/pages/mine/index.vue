@@ -8,7 +8,7 @@
         <img src="../../assets/二维码.png" alt="" />
       </p>
 
-      <div class="top1" v-ones="v in obj" :key="v">
+      <div class="top1" :key="obj.userId">
         <img :src="obj.avatarUrl" alt="" />
         <span>{{ obj.nickname }}</span>
       </div>
@@ -149,7 +149,7 @@ export default {
   top: 200px;
   left: 60px;
 }
-.top p {
+.top p:nth-child(2) {
   margin-left: 245px;
 }
 .top1 {

@@ -59,12 +59,19 @@ export default {
       console.log("submit", values);
       const result = await reqLogin(values);
       console.log(result);
-      if (result.status === 200) {
+      if (result.data.msg === "密码错误") Toast("信息错误,登陆失败");
+      else {
         Toast("登陆成功");
         setToken(result.data.token);
         console.log(result.data.token);
         this.$router.push("/sy");
       }
+      // if (result.status === 200) {
+      //   Toast("登陆成功");
+      //   setToken(result.data.token);
+      //   console.log(result.data.token);
+      //   this.$router.push("/sy");
+      // }
     },
   },
   created() {},
