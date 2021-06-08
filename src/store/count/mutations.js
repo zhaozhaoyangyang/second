@@ -1,7 +1,7 @@
 export default {
-  //   radioIdList(state, id) {
-  //     state.radioId = id;
-  //   },
+    radioIdList(state, id) {
+      state.radioId = id;
+    },
   //点击歌曲时要做的
   selectSongByIndex(state, payload) {
     /* 
