@@ -57,29 +57,50 @@
             <span class="s2">更多></span>
           </div>
 
-         <!-- 歌手列表 -->
-         <div class="sl">
-         <div class="singList" v-for="(item) in arr.slice(0,20)" :key="item.id">
-             <img :src="item.img1v1Url" alt="" @click="btn(item.id)">
-             <p>{{item.name}}</p>
-         </div>
+          <!-- 歌手列表 -->
+          <div class="sl">
+            <div
+              class="singList"
+              v-for="item in arr.slice(0, 10)"
+              :key="item.id"
+            >
+              <img :src="item.img1v1Url" alt="" @click="btn(item.id)" />
+              <p>{{ item.name }}</p>
+            </div>
           </div>
         </div>
       </van-tab>
-      <van-tab title="歌单" name="b"> 123456</van-tab>
-      <van-tab title="新碟上架" name="c"> 欧赔【iopi</van-tab>
+      <van-tab title="歌单" name="b">
+        <h2>全部歌单</h2>
+        <div class="big">
+          <div class="small" v-for="v in obj.slice(0, 10)" :key="v.id">
+            <img :src="v.picUrl" alt="" />
+            <p>{{ v.name }}</p>
+          </div>
+        </div>
+      </van-tab>
+      <van-tab title="新碟上架" name="c">
+        <div class="one">
+          <div class="two" v-for="v in diepian.slice(0, 10)" :key="v.id">
+            <img :src="v.picUrl" alt="" />
+            <p>{{ v.name }}</p>
+          </div>
+        </div>
+      </van-tab>
     </van-tabs>
   </div>
 </template>
 
 <script>
-import {getSinger,reqsings} from '../../api/fl'
+import { getSinger, reqGd, reqDd } from "../../api/fl";
 export default {
   components: {},
   data() {
     return {
       activeName: "a",
-      arr:[]
+      arr: [],
+      obj: "",
+      diepian: "",
     };
   },
   computed: {},
@@ -87,23 +108,34 @@ export default {
 
   methods: {
     //歌手列表
-     async getsing(){
-         const result = await getSinger()
-         console.log(result);
-         this.arr = result.data.artists
-        //  console.log(this.arr);
-      },
-      //歌手单曲
-     async btn(id){
-       console.log(id);
-        const result = await reqsings(id)
-        console.log(result);
-        this.$router.push('/singer')
-      }
+    async getsing() {
+      const result = await getSinger();
+      console.log(result);
+      this.arr = result.data.artists;
+    },
+    btn(id) {
+      this.$router.push("/singerr/" + id);
+    },
+
+    //歌单
+    async getGd() {
+      const result = await reqGd();
+      // console.log(result);
+      this.obj = result.data.result;
+      console.log(this.obj);
+    },
+    //新碟
+    async getdd() {
+      const result = await reqDd();
+      this.diepian = result.data.albums;
+    },
   },
   created() {
-      this.getsing()
+    this.getsing();
+    this.getGd();
+    this.getdd();
   },
+
   mounted() {},
   beforeCreate() {},
   beforeMount() {},
@@ -166,23 +198,55 @@ ul {
   font-size: 10px;
   float: right;
 }
-.singList  img{
-    width: 90px;
-    height: 90px;
+.singList img {
+  width: 90px;
+  height: 90px;
 }
-.singList p{
+.singList p {
   font-size: 5px;
 }
 
-.singLisy{
+.singLisy {
   margin: 10px;
 }
-.sl{
+.sl {
   width: 200px;
   /* background: skyblue; */
-  margin: 0  auto 10px;
+  margin: 0 auto 10px;
   display: flex;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   justify-content: space-around;
+}
+.big,
+.one {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  /* background-color: skyblue; */
+  justify-content: space-around;
+  margin: 10px 0;
+}
+.small,
+.two {
+  width: 43%;
+}
+.small p,
+.two p {
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 15px 0;
+}
+.small img,
+.two img {
+  width: 100%;
+}
+h2 {
+  width: 90%;
+  height: 30px;
+  line-height: 30px;
+  margin: 20px auto 10px;
+  border-bottom: 3px solid black;
 }
 </style>

@@ -2,6 +2,25 @@ import Vue from "vue";
 
 import VueRouter from "vue-router";
 
+// 这个错误是vue-router内部错误,导致导航跳转问题,、
+// 往同一地址跳转时会报错的情况push和replace 都会导致这个情况的发生。
+const originalPush = VueRouter.prototype.push;
+const originalReplace = VueRouter.prototype.replace;
+//push
+VueRouter.prototype.push = function push(location, onResolve, onReject) {
+  if (onResolve || onReject)
+    return originalPush.call(this, location, onResolve, onReject);
+
+  return originalPush.call(this, location).catch((err) => err);
+};
+//replace
+VueRouter.prototype.replace = function push(location, onResolve, onReject) {
+  if (onResolve || onReject)
+    return originalReplace.call(this, location, onResolve, onReject);
+
+  return originalReplace.call(this, location).catch((err) => err);
+};
+
 Vue.use(VueRouter);
 const router = new VueRouter({
   routes: [
@@ -16,6 +35,8 @@ const router = new VueRouter({
       meta: {
         headerShow: false,
         footerShow: false,
+        backshow: false,
+        keepAlive: false,
       },
     },
     {
@@ -24,6 +45,8 @@ const router = new VueRouter({
       meta: {
         headerShow: false,
         footerShow: false,
+        backshow: false,
+        keepAlive: false,
       },
     },
     {
@@ -32,6 +55,9 @@ const router = new VueRouter({
       meta: {
         headerShow: false,
         footerShow: true,
+
+        backshow: false,
+        keepAlive: false,
       },
     },
     {
@@ -40,14 +66,20 @@ const router = new VueRouter({
       meta: {
         headerShow: true,
         footerShow: true,
+
+        backshow: false,
+        keepAlive: true,
+        // isUseCache: false,//默认不缓存
       },
     },
     {
-      path: "/singer",
-      component: () => import("../pages/fl/singer"),
+      path: "/singerr/:id",
+      component: () => import("../pages/fl/singerr"),
       meta: {
         headerShow: false,
         footerShow: false,
+        backshow: true,
+        keepAlive: false,
       },
     },
     {
@@ -56,6 +88,8 @@ const router = new VueRouter({
       meta: {
         headerShow: false,
         footerShow: true,
+
+        backshow: false,
       },
     },
     {
@@ -64,6 +98,9 @@ const router = new VueRouter({
       meta: {
         headerShow: true,
         footerShow: true,
+
+        backshow: false,
+        keepAlive: true,
       },
     },
     {
@@ -72,6 +109,8 @@ const router = new VueRouter({
       meta: {
         headerShow: false,
         footerShow: true,
+
+        backshow: false,
       },
     },
     {

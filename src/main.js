@@ -10,7 +10,7 @@ import store from "./store";
 
 Vue.use(Vant);
 Vue.use(Icon);
-
+//wolai测试
 Vue.config.productionTip = false;
 
 new Vue({
