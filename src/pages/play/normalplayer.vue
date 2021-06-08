@@ -9,7 +9,7 @@
         <p>{{currentSong.ar}}</p>
       </div>
       <i class="icon-meu">
-        <img  src="../../assets/meu.png" alt="" />
+        <img src="../../assets/meu.png" alt="" />
       </i>
     </div>
     <div class="content">
@@ -32,11 +32,14 @@
         </div>
     </div>
     <div class="footer">
-        <i class="icon-enjoy"></i>
-        <i class="icon-upload"></i>
-        <i :class="{'icon-unlove':!love,'icon-love':love}" @click="love=!love"></i>
-        <i class="icon-listxunhuan"></i>
-        <i class="icon-songlist"></i>
+      <i class="icon-enjoy"></i>
+      <i class="icon-upload"></i>
+      <i
+        :class="{ 'icon-unlove': !love, 'icon-love': love }"
+        @click="love = !love"
+      ></i>
+      <i class="icon-listxunhuan"></i>
+      <i class="icon-songlist"></i>
     </div>
   </div>
 </template>
@@ -46,7 +49,7 @@ import BarProgress from './children/bar-progress';
 import {mapState, mapGetters} from 'vuex'
 export default {
   components: {
-    BarProgress
+    BarProgress,
   },
  props:['progress'],
   data() {
@@ -58,7 +61,7 @@ export default {
         picUrl:
           "https://p1.music.126.net/uOAROZ8Ia72yvcmfMIg_Uw==/125344325570003.jpg",
       },
-    }
+    };
   },
   computed: {
     ...mapState({
@@ -117,7 +120,6 @@ export default {
   transform: translateY(0);
 }
 .header {
-
   display: flex;
   justify-content: space-between;
   padding: 10px;
@@ -143,7 +145,7 @@ export default {
   font-size: 16px;
   font-family: "Arial Rounded MT Bold";
   line-height: 25px;
-  color:rgb(91, 29, 29);
+  color: rgb(91, 29, 29);
 }
 .desc > p {
   font-size: 13px;
@@ -175,116 +177,116 @@ export default {
     transform: rotate(360deg);
   }
 }
-.geci{
-    text-align: center;
-    margin-top:30px;
-    font-family: 'Gill Sans MT';
-    font-size: 12px;
-    color: #d2cfcf;
+.geci {
+  text-align: center;
+  margin-top: 30px;
+  font-family: "Gill Sans MT";
+  font-size: 12px;
+  color: #d2cfcf;
 }
-.geci>li.geciactive{
-    color: rgb(252, 13, 88);
-    font-size: 13px;
+.geci > li.geciactive {
+  color: rgb(252, 13, 88);
+  font-size: 13px;
 }
-.geci>li{
-    line-height: 20px;
+.geci > li {
+  line-height: 20px;
 }
 /* .jindu{
     height: 100px;
 } */
-.control{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.control {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
-.icon-from{
-    width: 25px;
-    height: 25px;
-    background: url('../../assets/from.png');
-    background-size: 100%;
+.icon-from {
+  width: 25px;
+  height: 25px;
+  background: url("../../assets/from.png");
+  background-size: 100%;
 }
-.icon-puase{
-    width: 50px;
-    height: 50px;
-    background: url('../../assets/from.png');
-    background-size: 100%;
+.icon-puase {
+  width: 50px;
+  height: 50px;
+  background: url("../../assets/from.png");
+  background-size: 100%;
 }
-.icon-puase{
-    width: 50px;
-    height: 50px;
-    background: url('../../assets/播放.png');
-    background-size: 100%;
+.icon-puase {
+  width: 50px;
+  height: 50px;
+  background: url("../../assets/播放.png");
+  background-size: 100%;
 }
-.icon-play{
-    width: 50px;
-    height: 50px;
-    background: url('../../assets/暂停.png');
-    background-size: 100%;
+.icon-play {
+  width: 50px;
+  height: 50px;
+  background: url("../../assets/暂停.png");
+  background-size: 100%;
 }
-.icon-next{
-    width: 25px;
-    height: 25px;
-    background: url('../../assets/next.png');
-    background-size: 100%;
+.icon-next {
+  width: 25px;
+  height: 25px;
+  background: url("../../assets/next.png");
+  background-size: 100%;
 }
-.footer{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 60px;
+.footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 60px;
 }
-.icon-enjoy{
-    width: 25px;
-    height: 25px;
-    background: url('../../assets/enjoy.png');
-    background-size: 100%;
+.icon-enjoy {
+  width: 25px;
+  height: 25px;
+  background: url("../../assets/enjoy.png");
+  background-size: 100%;
 }
-.icon-upload{
-    width: 25px;
-    height: 25px;
-    background: url('../../assets/下载.png');
-    background-size: 100%;
+.icon-upload {
+  width: 25px;
+  height: 25px;
+  background: url("../../assets/下载.png");
+  background-size: 100%;
 }
-.icon-unlove{
-    width: 25px;
-    height: 25px;
-    background: url('../../assets/unlove.png');
-    background-size: 100%;
+.icon-unlove {
+  width: 25px;
+  height: 25px;
+  background: url("../../assets/unlove.png");
+  background-size: 100%;
 }
-.icon-love{
-    width: 25px;
-    height: 25px;
-    background: url('../../assets/红心.png');
-    background-size: 100%;
+.icon-love {
+  width: 25px;
+  height: 25px;
+  background: url("../../assets/红心.png");
+  background-size: 100%;
 }
-.icon-listxunhuan{
-    width: 25px;
-    height: 25px;
-    background: url('../../assets/listxunhuan.png');
-    background-size: 100%;
+.icon-listxunhuan {
+  width: 25px;
+  height: 25px;
+  background: url("../../assets/listxunhuan.png");
+  background-size: 100%;
 }
-.icon-danxun{
-    width: 25px;
-    height: 25px;
-    background: url('../../assets/danxun.png');
-    background-size: 100%;
+.icon-danxun {
+  width: 25px;
+  height: 25px;
+  background: url("../../assets/danxun.png");
+  background-size: 100%;
 }
-.icon-suiji{
-   width: 25px;
-    height: 25px;
-    background: url('../../assets/随机.png');
-    background-size: 100%;
+.icon-suiji {
+  width: 25px;
+  height: 25px;
+  background: url("../../assets/随机.png");
+  background-size: 100%;
 }
-.icon-xindong{
-   width: 25px;
-    height: 25px;
-    background: url('../../assets/心跳心动.png');
-    background-size: 100%;
+.icon-xindong {
+  width: 25px;
+  height: 25px;
+  background: url("../../assets/心跳心动.png");
+  background-size: 100%;
 }
-.icon-songlist{
-    width: 25px;
-    height: 25px;
-    background: url('../../assets/songlist.png');
-    background-size: 100%;
+.icon-songlist {
+  width: 25px;
+  height: 25px;
+  background: url("../../assets/songlist.png");
+  background-size: 100%;
 }
 </style>
