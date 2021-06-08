@@ -20,7 +20,9 @@ export default {
       progress:0.4
     };
   },
-  computed: {},
+  computed: {
+
+  },
   watch: {},
 
   methods: {},

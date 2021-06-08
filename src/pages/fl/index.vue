@@ -79,7 +79,9 @@
           </div>
         </div>
       </van-tab>
-      <van-tab title="新碟上架" name="c"> 欧赔</van-tab>
+      <van-tab title="新碟上架" name="c">
+        
+      </van-tab>
     </van-tabs>
   </div>
 </template>

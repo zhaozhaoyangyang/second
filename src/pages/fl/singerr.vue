@@ -7,7 +7,7 @@
       <van-tabs v-model="active">
         <van-tab title="热门作品">
           <ul class="list">
-            <li v-for="v in arr" :key="v.id">
+            <li v-for="(v,i) in arr" :key="v.id" @click="songAction(i)" >
               {{ v.name }}<van-icon class="icon" name="play-circle-o" />
             </li>
           </ul>
@@ -41,10 +41,12 @@
         </van-tab>
       </van-tabs>
     </div>
+    <Player/>
   </div>
 </template>
 
 <script>
+import Player from '../play'
 import {
   reqGetSinger,
   reqHotSings,
@@ -53,13 +55,13 @@ import {
   reqMs,
 } from "../../api/fl";
 export default {
-  components: {},
+  components: {Player},
   data() {
     return {
       id: null,
       active: 2,
       obj: null,
-      arr: "",
+      arr: [],
       m: "",
       zj: "",
       ms: "",
@@ -80,9 +82,17 @@ export default {
       this.id = this.$route.params.id;
       const result = await reqHotSings({ id: this.id });
       this.arr = [];
-      this.arr = result.data.songs;
+      this.arr = result.data.songs.map((item)=>({
+        id:item.id,
+        name:item.name,
+        ar:item.ar.map(v=>v.name).join('/'),
+        al:{
+          name:item.al.name,
+          picUrl:item.al.picUrl
+        }
+      }));
       console.log(this.arr);
-      this.$store.commit("count/radioIdList", this.arr.id);
+      // this.$store.commit("count/radioIdList", this.arr.id);
     },
     //获取歌手  MV
     async getMv() {
@@ -106,6 +116,18 @@ export default {
       this.ms = result.data;
       console.log(this.ms);
     },
+    //点击歌曲时上传当前下标和整个list到vuex
+    songAction(index){
+      const data ={
+        index,
+        list:this.arr
+      }
+      console.log(data);
+      this.$store.commit({
+        type:'count/selectSongByIndex',
+        data
+      })
+    }
   },
   created() {
     this.getSinger();
