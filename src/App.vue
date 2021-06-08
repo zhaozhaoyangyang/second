@@ -13,12 +13,14 @@
 <script>
 import Foot from "./components/footer.vue";
 import Head from "./components/header.vue";
+
 import Back from "./components/back.vue";
 export default {
   name: "App",
   components: {
     Head,
     Foot,
+
     Back,
   },
   provide() {

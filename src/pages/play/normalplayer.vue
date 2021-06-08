@@ -13,6 +13,7 @@
       </i>
       <div class="desc">
         <h2>{{ currentSong.al.name }}</h2>
+
         <p>{{ currentSong.ar }}</p>
       </div>
       <i class="icon-meu">
@@ -61,6 +62,7 @@ export default {
   components: {
     BarProgress,
   },
+
   props: ["progress"],
   data() {
     return {
@@ -155,7 +157,6 @@ export default {
   line-height: 20px;
   color: gray;
   font-weight: 500;
-  /* 1211 */
 }
 .pic {
   width: 100%;

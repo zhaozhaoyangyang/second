@@ -66,6 +66,7 @@ const router = new VueRouter({
       meta: {
         headerShow: true,
         footerShow: true,
+
         backshow: false,
         keepAlive: true,
         // isUseCache: false,//默认不缓存
@@ -77,7 +78,6 @@ const router = new VueRouter({
       meta: {
         headerShow: false,
         footerShow: false,
-
         backshow: true,
         keepAlive: false,
       },
@@ -88,6 +88,7 @@ const router = new VueRouter({
       meta: {
         headerShow: false,
         footerShow: true,
+
         backshow: false,
       },
     },
