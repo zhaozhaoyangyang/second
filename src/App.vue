@@ -1,15 +1,11 @@
 <template>
   <div id="app">
-     <Back v-if="$route.meta.backshow"></Back>
+    <Back v-if="$route.meta.backshow"></Back>
     <Head v-if="$route.meta.headerShow"></Head>
-
-    <keep-alive>
-    <router-view v-if="$route.meta.keepAlive"></router-view>
-    </keep-alive>
-     <router-view v-if="!$route.meta.keepAlive"></router-view>
-     <Player v-if="showplayer"/>
+    <Player v-if="showplayer"/>
+    <router-view></router-view>
+    <!-- <router-view v-if="!$route.meta.keepAlive"></router-view> -->
     <Foot v-if="$route.meta.footerShow"></Foot>
-   
   </div>
 </template>
 
@@ -36,6 +32,7 @@ export default {
     return {
       isRouterAlive: true, //模块刷新
     };
+    
   },
   methods: {
     reload() {
@@ -53,6 +50,4 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

@@ -7,7 +7,7 @@
       <van-tabs v-model="active">
         <van-tab title="热门作品">
           <ul class="list">
-            <li v-for="(v,i) in arr" :key="v.id" @click="songAction(i)" >
+            <li v-for="(v, i) in arr" :key="v.id" @click="songAction(i)">
               {{ v.name }}<van-icon class="icon" name="play-circle-o" />
             </li>
           </ul>
@@ -41,13 +41,14 @@
         </van-tab>
       </van-tabs>
     </div>
-    <!-- <Player v-if="showplayer"/> -->
+
+    <Player v-if="showplayer" />
   </div>
 </template>
 
 <script>
-// import Player from '../play'
-
+import Player from "../play";
+import { mapState } from "vuex";
 import {
   reqGetSinger,
   reqHotSings,
@@ -56,7 +57,7 @@ import {
   reqMs,
 } from "../../api/fl";
 export default {
-  components: {},
+  components: { Player },
   data() {
     return {
       id: null,
@@ -68,7 +69,12 @@ export default {
       ms: "",
     };
   },
- 
+
+  computed: {
+    ...mapState({
+      showplayer: (state) => state.count.currentIndex >= 0,
+    }),
+  },
   watch: {},
 
   methods: {
@@ -82,15 +88,16 @@ export default {
     async gethotsongs() {
       this.id = this.$route.params.id;
       const result = await reqHotSings({ id: this.id });
+
       this.arr = [];
-      this.arr = result.data.songs.map((item)=>({
-        id:item.id,
-        name:item.name,
-        ar:item.ar.map(v=>v.name).join('/'),
-        al:{
-          name:item.al.name,
-          picUrl:item.al.picUrl
-        }
+      this.arr = result.data.songs.map((item) => ({
+        id: item.id,
+        name: item.name,
+        ar: item.ar.map((v) => v.name).join("/"),
+        al: {
+          name: item.al.name,
+          picUrl: item.al.picUrl,
+        },
       }));
       // console.log(this.arr);
       // this.$store.commit("count/radioIdList", this.arr.id);
@@ -98,6 +105,7 @@ export default {
     //获取歌手  MV
     async getMv() {
       this.id = this.$route.params.id;
+
       // console.log(this.id);
       const result = await reqGetMv({ id: this.id });
       this.m = result.data.mvs;
@@ -118,13 +126,14 @@ export default {
       // console.log(this.ms);
     },
     //点击歌曲时上传当前下标和整个list到vuex
-    songAction(index){
-      const data ={
+
+    songAction(index) {
+      const data = {
         index,
-        list:this.arr
-      }
-      this.$store.commit('count/selectSongByIndex',data)
-    }
+        list: this.arr,
+      };
+      this.$store.commit("count/selectSongByIndex", data);
+    },
   },
   created() {
     this.getSinger();

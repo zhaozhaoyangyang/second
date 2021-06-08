@@ -1,5 +1,8 @@
 <template>
   <div class="reg">
+    <div class="touxiang"></div>
+    <van-uploader :after-read="afterRead" v-if="!imgurl" />
+    <img :src="imgurl" alt="" v-else />
     <van-form @submit="onSubmit">
       <van-field
         v-model="phone"
@@ -62,17 +65,22 @@ export default {
       captcha: "",
       password: "",
       nickname: "",
+      imgurl: "",
     };
   },
   computed: {},
   watch: {},
 
   methods: {
+    afterRead(file) {
+      // 此时可以自行将文件上传至服务器
+      console.log(file);
+      this.imgurl = file.content;
+    },
     //点击获取验证码
     async btncaptcha() {
       const result = await reqCaptcha({ phone: this.phone });
       console.log(result);
-      
     },
     async onSubmit(values) {
       console.log("submit", values);
@@ -112,6 +120,7 @@ export default {
   align-content: center;
   justify-content: center;
   /* background-color: #222; */
+  /* position: relative; */
 }
 
 .reg p {
@@ -133,5 +142,28 @@ h6 {
 }
 a {
   color: #fa1951;
+}
+
+.touxiang {
+  width: 115px;
+  height: 115px;
+  border-radius: 50%;
+  background: rgb(248, 246, 246);
+  position: absolute;
+  top: 50px;
+  left: 132px;
+}
+.van-uploader {
+  position: relative;
+  top: 70px;
+  left: 150px;
+}
+img {
+  width: 115px;
+  height: 115px;
+  position: relative;
+  top: 50px;
+  left: 132px;
+  border-radius: 50%;
 }
 </style>
