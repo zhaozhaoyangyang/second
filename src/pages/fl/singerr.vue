@@ -41,13 +41,13 @@
         </van-tab>
       </van-tabs>
     </div>
-    <Player v-if="showplayer"/>
+    <!-- <Player v-if="showplayer"/> -->
   </div>
 </template>
 
 <script>
-import Player from '../play'
-import {mapState} from 'vuex'
+// import Player from '../play'
+
 import {
   reqGetSinger,
   reqHotSings,
@@ -56,7 +56,7 @@ import {
   reqMs,
 } from "../../api/fl";
 export default {
-  components: {Player},
+  components: {},
   data() {
     return {
       id: null,
@@ -68,11 +68,7 @@ export default {
       ms: "",
     };
   },
-  computed: {
-    ...mapState({
-      showplayer:state=>(state.count.currentIndex>=0)
-    })
-  },
+ 
   watch: {},
 
   methods: {

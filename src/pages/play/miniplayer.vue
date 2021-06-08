@@ -2,13 +2,8 @@
   <div class="miniplayer" ref="mini">
     <div class="mini">
       <canvas class="canvas" ref="canvas"></canvas>
-
       <div class="mini-icon">
-        <img
-          :src="currentSong.al.picUrl"
-          :class="{ pause: !playing }"
-          @click="changeAction"
-        />
+        <img :src="currentSong.al.picUrl" :class="{ pause: !playing }" @click="changeAction" />
       </div>
     </div>
   </div>
@@ -20,36 +15,36 @@ export default {
   props: ["progress"],
   data() {
     return {
-      context: "",
+      context: ""
     };
   },
   computed: {
     ...mapState({
-      playing: (state) => state.count.playing,
-      isshowbig: (state) => state.count.fullScreen,
+      playing: state => state.count.playing,
+      isshowbig: state => state.count.fullScreen
     }),
     ...mapGetters({
-      currentSong: "count/currentSong",
-    }),
+      currentSong: "count/currentSong"
+    })
   },
   watch: {
     progress() {
       //progress变化要重新绘制
       this.renderCircle(this.context);
-    },
-    isshowbig(newval) {
-      
-      if (newval) {
-        this.mini.style.opacity = 0;
-      } else {
-        this.mini.style.opacity = 1;
-      }
-    },
+    }
+    // isshowbig(newval) {
+
+    //   if (newval) {
+    //     this.mini.style.opacity = 0;
+    //   } else {
+    //     this.mini.style.opacity = 1;
+    //   }
+    // },
   },
 
   methods: {
     changeAction() {
-      this.$store.commit("count/setFullScreen", !this.isshowbig);
+      this.$store.commit("count/setFullScreen", true);
     },
     renderCircle(context) {
       //每次绘制之前清除上一次的绘制
@@ -88,17 +83,13 @@ export default {
       context.fillStyle = "#fc0d58";
       context.fill("evenodd"); //填充不重叠的部分
       context.restore();
-    },
+    }
   },
+
   created() {},
 
   mounted() {
-    this.mini = this.$refs.mini;
-  },
-  beforeCreate() {},
-  beforeMount() {},
-  beforeUpdate() {},
-  updated() {
+    // this.mini = this.$refs.mini;
     const canvas = this.$refs.canvas;
     canvas.width = 50;
     canvas.height = 50;
@@ -107,14 +98,20 @@ export default {
     const context = canvas.getContext("2d");
     this.context = context;
     this.renderCircle(context);
+
+    this.mini = this.$refs.mini;
   },
+  beforeCreate() {},
+  beforeMount() {},
+  beforeUpdate() {},
+  updated() {}
 };
 </script>
 <style scoped>
 .mini {
   position: fixed;
-  bottom: 20px;
-  left: 50%;
+  top: 489px;
+  left: 30px;
   margin-left: -25px;
   border-radius: 50%;
   width: 50px;
@@ -123,13 +120,12 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 
-.miniplayer{
+/* .miniplayer{
   transition: all 1.5s;
   opacity: 1;
-}
+} */
 .canvas {
   position: absolute;
   left: 0;

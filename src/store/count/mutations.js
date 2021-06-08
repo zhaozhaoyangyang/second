@@ -21,5 +21,8 @@ export default {
   },
   setFullScreen(state, payload) {
     state.fullScreen = payload;
+  },
+  setCurrentIndex(state, payload) {
+    state.currentIndex = payload
   }
 };

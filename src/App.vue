@@ -7,6 +7,7 @@
     <router-view v-if="$route.meta.keepAlive"></router-view>
     </keep-alive>
      <router-view v-if="!$route.meta.keepAlive"></router-view>
+     <Player v-if="showplayer"/>
     <Foot v-if="$route.meta.footerShow"></Foot>
    
   </div>
@@ -16,12 +17,15 @@
 import Foot from "./components/footer.vue";
 import Head from "./components/header.vue";
 import Back from './components/back.vue'
+import Player from './pages/play'
+import {mapState} from 'vuex'
 export default {
   name: "App",
   components: {
     Head,
     Foot,
-    Back
+    Back,
+    Player
   },
   provide() {
     return {
@@ -40,6 +44,11 @@ export default {
         this.isRouterAlive = true;
       });
     },
+  },
+   computed: {
+    ...mapState({
+      showplayer:state=>(state.count.currentIndex>=0)
+    })
   },
 };
 </script>
