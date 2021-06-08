@@ -24,6 +24,7 @@ export default {
     return {
       isRouterAlive: true, //模块刷新
     };
+    
   },
   methods: {
     reload() {
