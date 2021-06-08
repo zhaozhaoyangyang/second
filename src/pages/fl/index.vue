@@ -79,7 +79,7 @@
           </div>
         </div>
       </van-tab>
-      <van-tab title="新碟上架" name="c"> 欧赔【iopi</van-tab>
+      <van-tab title="新碟上架" name="c"> 欧赔</van-tab>
     </van-tabs>
   </div>
 </template>
@@ -114,11 +114,18 @@ export default {
       // console.log(result);
       this.obj = result.data.result
       console.log(this.obj);
-    }
+    },
+    //新碟
+    // async getdd(){
+    //   const result = await reqDd()
+    //   console.log(result);
+    // }
+    
   },
   created() {
     this.getsing();
     this.getGd()
+    // this.getdd()
   },
   mounted() {},
   beforeCreate() {},
