@@ -13,3 +13,5 @@ export const reqZj = (id) =>post('/artist/album',id)
 export const reqMs = (id) =>post('/artist/desc',id)
 //歌单
 export const reqGd = (data) =>post('/personalized',data)
+//全部新碟
+export const reqDd = (data) =>post('/album/new',data)
