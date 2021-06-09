@@ -166,7 +166,6 @@
 </template>
 
 <script>
-import Swiper from "swiper";
 import { reqBanner } from "../../api/banner";
 import { reqSource } from "../../api/banner";
 import { reqHost } from "../../api/banner";
@@ -312,40 +311,7 @@ export default {
     this.bangdans();
     this.getartists();
   },
-  mounted() {
-
-    new Swiper(".swiper-container", {
-      loop: true,
-      mousewheelControl: true,
-      // 如果需要分页器
-      // pagination: ".swiper-pagination",
-      // 如果需要前进后退按钮
-      // nextButton: ".swiper-button-next",
-      // prevButton: ".swiper-button-prev",
-      // 如果需要滚动条
-      scrollbar: ".swiper-scrollbar",
-      //如果需要自动切换海报
-      autoplay: {
-        delay: 1000, //时间 毫秒
-        disableOnInteraction: true, //用户操作之后是否停止自动轮播默认true
-      },
-      pagination: ".swiper-pagination",
-      // paginationElement : 'li',
-      paginationType: "bullets",
-      // autoplay:true,
-      // autoplay: {
-      //   delay: 3000,
-      //   stopOnLastSlide: false,
-      //   disableOnInteraction: true,
-      // },
-
-      // effect: "flip",
-      // flip: {
-      //   slideShadows: true,
-      //   limitRotation: true,
-      // },
-    });
-  },
+  mounted() {},
   beforeCreate() {},
   beforeMount() {},
   beforeUpdate() {},
