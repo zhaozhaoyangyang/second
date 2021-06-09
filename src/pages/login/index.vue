@@ -21,6 +21,9 @@
         :rules="[{ required: true, message: '请填写密码' }]"
       />
       <div style="margin: 16px; margin-top:390px;margin-left:28px">
+        <van-button round block type="info" native-type="submit" @click="reg"
+          >注册</van-button
+        >
         <van-button round block type="info" native-type="submit"
           >登录</van-button
         >
@@ -50,6 +53,9 @@ export default {
   watch: {},
 
   methods: {
+    reg() {
+      this.$router.push("/reg");
+    },
     afterRead(file) {
       // 此时可以自行将文件上传至服务器
       console.log(file);
@@ -59,12 +65,20 @@ export default {
       console.log("submit", values);
       const result = await reqLogin(values);
       console.log(result);
-      if (result.status === 200) {
+      if (result.data.msg === "密码错误") {
+        Toast("信息错误,登陆失败");
+      } else {
         Toast("登陆成功");
         setToken(result.data.token);
         console.log(result.data.token);
         this.$router.push("/sy");
       }
+      // if (result.status === 200) {
+      //   Toast("登陆成功");
+      //   setToken(result.data.token);
+      //   console.log(result.data.token);
+      //   this.$router.push("/sy");
+      // }
     },
   },
   created() {},
@@ -138,6 +152,7 @@ export default {
 .van-cell {
   top: 375px;
   width: 260px;
+  height: 45px;
   margin: 0 auto;
   background: white;
   border-radius: 30px;
@@ -145,10 +160,13 @@ export default {
 }
 .van-button {
   width: 115px;
+  height: 40px;
   font-size: 18px;
   margin: 0 auto;
   background: #fa1951;
   border: none;
+  float: left;
+  margin-left: 30px;
 }
 .wangyi {
   height: 50px;
@@ -157,7 +175,7 @@ export default {
   width: 40px;
   border-radius: 50px;
   position: absolute;
-  top: 572px;
+  top: 576px;
   left: 110px;
 }
 .wangyi p {
@@ -165,8 +183,9 @@ export default {
   height: 30px;
   line-height: 30px;
   margin-left: 165px;
-  margin-top: 50px;
   font-size: 22px;
   color: white;
+  position: absolute;
+  bottom: 55px;
 }
 </style>

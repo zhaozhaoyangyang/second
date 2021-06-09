@@ -114,12 +114,44 @@ const router = new VueRouter({
       },
     },
     {
-    path: "/chuangzuo",
-    component: () => import("../pages/mine/chuangzuo"),
-    meta: {
-      headerShow: false,
-      footerShow: true,
+      path: "/xiaoxi",
+      component: () => import("../pages/mine/xiaoxi"),
+      meta: {
+        headerShow: false,
+        footerShow: true,
+
+        backshow: false,
+      },
     },
+    {
+      path: "/geshou",
+      component: () => import("../pages/mine/geshou"),
+      meta: {
+        headerShow: false,
+        footerShow: true,
+
+        backshow: false,
+      },
+    },
+    {
+      path: "/gexingdt",
+      component: () => import("../pages/mine/gexingdt"),
+      meta: {
+        headerShow: true,
+        footerShow: true,
+
+        backshow: false,
+      },
+    },
+    {
+      path: "/gedan",
+      component: () => import("../pages/mine/gedan"),
+      meta: {
+        headerShow: true,
+        footerShow: true,
+
+        backshow: false,
+      },
     },
   ],
   linkActiveClass: "active",

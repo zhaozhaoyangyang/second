@@ -6,7 +6,7 @@ const playMode = {
   radioIdList:[]
 };
 export default {
-  // radioId: [],
+  radioId: [],
 
   // play组件共享数据
   fullScreen: false, //是否显示大播放器
