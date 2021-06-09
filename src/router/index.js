@@ -129,13 +129,7 @@ const router = new VueRouter({
       },
     },
     {
-<<<<<<< HEAD
-      path: "/chuangzuo",
-      component: () => import("../pages/mine/chuangzuo"),
-      meta: {
-        headerShow: false,
-        footerShow: true,
-=======
+
       path: "/xiaoxi",
       component: () => import("../pages/mine/xiaoxi"),
       meta: {
@@ -183,7 +177,6 @@ const router = new VueRouter({
         footerShow: true,
 
         backshow: true,
->>>>>>> 193dd0cb49252c5c1446aa80825d80dfd894446f
       },
     },
   ],
