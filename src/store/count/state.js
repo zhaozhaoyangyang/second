@@ -3,9 +3,10 @@ const playMode = {
   sequence: 0, //顺序
   loop: 1, //单循
   random: 2, //随机
+  radioIdList:[]
 };
 export default {
-  // radioId: [],
+  radioId: [],
 
   // play组件共享数据
   fullScreen: false, //是否显示大播放器

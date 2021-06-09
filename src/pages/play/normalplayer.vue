@@ -1,54 +1,44 @@
 <template>
   <div
-    :class="{
-      normalplay: true,
-      normalplayup: fullScreen,
-      normalplaydown: !fullScreen,
-    }"
+    :class="{normalplay:true,normalplayup:fullScreen,normalplaydown:!fullScreen}"
     ref="normalplay"
   >
     <div class="header">
       <i class="icon-down" @click="downfull">
-        <img src="../../assets/down.png" alt="" />
+        <img src="../../assets/down.png" alt />
       </i>
       <div class="desc">
-        <h2>{{ currentSong.al.name }}</h2>
-
-        <p>{{ currentSong.ar }}</p>
+        <h2>{{ currentSong.name }}</h2>
+        <p>{{currentSong.ar}}</p>
       </div>
       <i class="icon-meu">
-        <img src="../../assets/meu.png" alt="" />
+        <img src="../../assets/meu.png" alt />
       </i>
     </div>
     <div class="content">
       <div class="pic">
-        <img :src="currentSong.al.picUrl" alt="" :class="{ pause: !playing }" />
+        <img :src="currentSong.al.picUrl" alt :class="{ pause: !playing }" />
       </div>
       <!-- <ul class="geci">
         <li class="geciactive">老鼠爱大米</li>
         <li>老鼠爱吃大米</li>
-      </ul> -->
+      </ul>-->
     </div>
     <div class="playcontrol">
       <div class="jindu">
-        <bar-progress v-model="a" />
+        <bar-progress v-model="a" :duration="duration"
+      :currentTime="currentTime"/>
       </div>
       <div class="control">
-        <i class="icon-from"></i>
-        <i
-          :class="{ 'icon-puase': !playing, 'icon-play': playing }"
-          @click="changeAction"
-        ></i>
-        <i class="icon-next"></i>
+        <i class="icon-from" @click="lastMusic"></i>
+        <i :class="{'icon-puase':!playing,'icon-play':playing}" @click="changeAction"></i>
+        <i class="icon-next" @click="nextMusic"></i>
       </div>
     </div>
     <div class="footer">
       <i class="icon-enjoy"></i>
       <i class="icon-upload"></i>
-      <i
-        :class="{ 'icon-unlove': !love, 'icon-love': love }"
-        @click="love = !love"
-      ></i>
+      <i :class="{ 'icon-unlove': !love, 'icon-love': love }" @click="love = !love"></i>
       <i class="icon-listxunhuan"></i>
       <i class="icon-songlist"></i>
     </div>
@@ -60,51 +50,77 @@ import BarProgress from "./children/bar-progress";
 import { mapState, mapGetters } from "vuex";
 export default {
   components: {
-    BarProgress,
+    BarProgress
   },
-
-  props: ["progress"],
+  props: ["progress", "currentIndex",'duration','currentTime'],
   data() {
     return {
       love: false,
       a: 0,
+      index: -1,
+      
       al: {
         name: "Your Head Smells Good",
         picUrl:
-          "https://p1.music.126.net/uOAROZ8Ia72yvcmfMIg_Uw==/125344325570003.jpg",
-      },
+          "https://p1.music.126.net/uOAROZ8Ia72yvcmfMIg_Uw==/125344325570003.jpg"
+      }
     };
   },
   computed: {
     ...mapState({
-      playing: (state) => state.count.playing,
-      fullScreen: (state) => state.count.fullScreen,
+      playing: state => state.count.playing,
+      fullScreen: state => state.count.fullScreen,
+      sequencePlayList:state=>state.count.sequencePlayList
     }),
     ...mapGetters({
-      currentSong: "count/currentSong",
-    }),
+      currentSong: "count/currentSong"
+    })
+
   },
   watch: {
     progress() {
       this.a = this.progress;
     },
-  },
+    currentIndex() {
+      this.index = this.currentIndex;
+    },
 
+  },
   methods: {
     downfull() {
-      this.$store.commit("count/setFullScreen", !this.fullScreen);
+      this.$store.commit("count/setFullScreen", false);
     },
     changeAction() {
       this.$store.commit("count/setPlaying", !this.playing);
-      console.log(this.a);
+      // console.log(this.a);
     },
+    lastMusic() {
+      this.index--;
+      if (this.index <= 0) {
+        this.index=0
+      } else {
+        
+        this.$store.commit("count/setCurrentIndex", this.index);
+      }
+    },
+    nextMusic() {
+      this.index++;
+      if (this.index >= this.sequencePlayList.length) {
+        this.index=this.sequencePlayList.length
+        return;
+      } else {
+        
+
+        this.$store.commit("count/setCurrentIndex", this.index);
+      }
+    }
   },
   created() {},
   mounted() {},
   beforeCreate() {},
   beforeMount() {},
   beforeUpdate() {},
-  updated() {},
+  updated() {}
 };
 </script>
 <style scoped>
@@ -117,6 +133,7 @@ export default {
   z-index: 1000;
   background: #ffffff;
   transition: all 1s;
+  /* display: none; */
 }
 .normalplaydown {
   transform: translateY(100%);

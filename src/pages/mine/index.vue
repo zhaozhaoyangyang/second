@@ -24,7 +24,9 @@
         <van-icon name="envelop-o" /><span>我的消息</span><span>></span>
       </p>
       <p><van-icon name="envelop-o" /><span>云贝中心</span><span>></span></p>
-      <p><van-icon name="envelop-o" /><span>创作者中心</span><span>></span></p>
+      <p>
+        <van-icon name="envelop-o" /><span>创作者中心</span><span>></span>
+      </p>
     </div>
     <div class="yinyue">
       <p>音乐服务</p>

@@ -134,36 +134,92 @@ export default {
     },
     async recommendProgram(id) {
       const result = await reqDetail({ rid: id });
-      // console.log(result.data.programs);
+      console.log(result.data.programs);
       this.mainSongList = result.data.programs;
       this.songId = [];
-      this.mainSongList.forEach((i) => {
-        // console.log(i.mainSong.id);
-        this.songId.push(i.mainSong.id);
-        this.$store.commit("count/radioIdList", this.songId);
-        console.log(this.$store.state.count.radioId);
-      });
+      
+      this.songId =this.mainSongList.map(item=>{
+        return {
+          id:item.mainSong.id,
+          name:item.mainSong.name,
+          ar:'电台',
+          al:{
+            name:item.mainSong.name,
+            picUrl:item.coverUrl
+          }
+        }
+      })
+      let data={
+        index:0,
+        list:this.songId
+      }
+      console.log(data);
+      this.$store.commit('count/selectSongByIndex',data)
+      // this.mainSongList.forEach((i) => {
+      //   // console.log(i.mainSong.id);
+      //   this.songId.push(i.mainSong.id);
+      //   this.$store.commit("count/radioIdList", this.songId);
+      //   // console.log(this.$store.state.count.radioId);
+      // });
     },
     async hotprogram(id) {
       const result = await reqDetail({ rid: id });
       // console.log(result.data.programs);
       this.mainSongList = result.data.programs;
       this.songId = [];
-      this.mainSongList.forEach((i) => {
-        // console.log(i.mainSong.id);
-        this.songId.push(i.mainSong.id);
-        this.$store.commit("count/radioIdList", this.songId);
-        console.log(this.$store.state.count.radioId);
-      });
+      this.songId =this.mainSongList.map(item=>{
+        return {
+          id:item.mainSong.id,
+          name:item.mainSong.name,
+          ar:'电台',
+          al:{
+            name:item.mainSong.name,
+            picUrl:item.coverUrl
+          }
+        }
+      })
+      let data={
+        index:0,
+        list:this.songId
+      }
+      console.log(data);
+      this.$store.commit('count/selectSongByIndex',data)
+      // this.mainSongList.forEach((i) => {
+      //   // console.log(i.mainSong.id);
+      //   this.songId.push(i.mainSong.id);
+      //   this.$store.commit("count/radioIdList", this.songId);
+      //   console.log(this.$store.state.count.radioId);
+      // });
     },
+
+
     hoursProgram() {
       this.songId = [];
-      this.programList.forEach((i) => {
-        // console.log(i.program.mainSong.id);
-        this.songId.push(i.program.mainSong.id);
-        this.$store.commit("count/radioIdList", this.songId);
-        console.log(this.$store.state.count.radioId);
-      });
+      this.songId =this.programList.map(item=>{
+        return {
+          id:item.program.mainSong.id,
+          name:item.program.mainSong.name,
+          ar:'电台',
+          al:{
+            name:item.program.mainSong.name,
+            picUrl:item.program.coverUrl
+          }
+        }
+      })
+      let data={
+        index:0,
+        list:this.songId
+      }
+      console.log(data);
+      this.$store.commit('count/selectSongByIndex',data)
+      // console.log(this.programList);
+      
+      // this.programList.forEach((i) => {
+      //   // console.log(i.program.mainSong.id);
+      //   this.songId.push(i.program.mainSong.id);
+      //   this.$store.commit("count/radioIdList", this.songId);
+      //   // console.log(this.$store.state.count.radioId);
+      // });
     },
   },
   created() {
