@@ -109,7 +109,7 @@ const router = new VueRouter({
       meta: {
         headerShow: false,
         footerShow: true,
-
+        //傻狗442
         backshow: false,
       },
     },
