@@ -13,7 +13,6 @@ export default {
   components: {},
   data() {
     return {
-      //   activeName: "a",
       obj: [],
     };
   },
@@ -41,9 +40,11 @@ export default {
 <style scoped>
 .top {
   float: left;
+  text-align: center;
+  margin-left: 20px;
+  margin-top: 10px;
 }
 .top img {
-  width: 300px;
-  padding: 6px;
+  width: 335px;
 }
 </style>

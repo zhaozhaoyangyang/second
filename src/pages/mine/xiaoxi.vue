@@ -1,6 +1,6 @@
 <template>
   <div class="xiaoxi">
-    <div class="top" v-for="v in obj.slice(0, 30)" :key="v.id">
+    <div class="top" v-for="v in obj.slice(0, 50)" :key="v.id">
       <img :src="v.al.picUrl" alt="" />
       <span>{{ v.name }}</span>
     </div>
