@@ -44,8 +44,15 @@ section {
   padding: 10px;
 }
 section img {
-  width: 100px;
-  height: 100px;
-  /* padding: 10px; */
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+section p {
+  width: 115px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 </style>
