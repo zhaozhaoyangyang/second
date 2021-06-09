@@ -117,20 +117,30 @@ const router = new VueRouter({
       path: "/xiaoxi",
       component: () => import("../pages/mine/xiaoxi"),
       meta: {
-        headerShow: false,
+        headerShow: true,
         footerShow: true,
 
-        backshow: false,
+        backshow: true,
+      },
+    },
+    {
+      path: "/chuangzuo",
+      component: () => import("../pages/mine/chuangzuo"),
+      meta: {
+        headerShow: true,
+        footerShow: true,
+
+        backshow: true,
       },
     },
     {
       path: "/geshou",
       component: () => import("../pages/mine/geshou"),
       meta: {
-        headerShow: false,
+        headerShow: true,
         footerShow: true,
 
-        backshow: false,
+        backshow: true,
       },
     },
     {
@@ -140,7 +150,7 @@ const router = new VueRouter({
         headerShow: true,
         footerShow: true,
 
-        backshow: false,
+        backshow: true,
       },
     },
     {
@@ -150,7 +160,7 @@ const router = new VueRouter({
         headerShow: true,
         footerShow: true,
 
-        backshow: false,
+        backshow: true,
       },
     },
   ],
