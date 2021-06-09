@@ -58,19 +58,19 @@ export default {
     },
     afterRead(file) {
       // 此时可以自行将文件上传至服务器
-      console.log(file);
+      // console.log(file);
       this.imgurl = file.content;
     },
     async onSubmit(values) {
-      console.log("submit", values);
+      // console.log("submit", values);
       const result = await reqLogin(values);
-      console.log(result);
+      // console.log(result);
       if (result.data.msg === "密码错误") {
         Toast("信息错误,登陆失败");
       } else {
         Toast("登陆成功");
         setToken(result.data.token);
-        console.log(result.data.token);
+        // console.log(result.data.token);
         this.$router.push("/sy");
       }
       // if (result.status === 200) {

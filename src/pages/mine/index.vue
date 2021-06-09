@@ -101,9 +101,9 @@ export default {
     },
     async getUser() {
       const result = await reqYonghu();
-      console.log(result);
+      // console.log(result);
       this.obj = result.data.profile;
-      console.log(this.obj);
+      // console.log(this.obj);
     },
     tuichu() {
       removeToken();

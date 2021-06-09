@@ -5,7 +5,7 @@ const instance = axios.create({
   baseURL: "/api",
   timeout: 5000,
 });
-
+//axios里面
 instance.interceptors.request.use(
   function(config) {
     if (getToken()) {

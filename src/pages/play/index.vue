@@ -74,7 +74,7 @@ export default {
       }
       this.getMusic();
       this.$nextTick(() => {
-        console.log(this.audio);
+        // console.log(this.audio);
         this.audio.load();
         this.audio.play();
       });
@@ -83,7 +83,7 @@ export default {
 
   methods: {
     async getMusic() {
-      const result = await axios.get("http://localhost:3000/song/url", {
+      const result = await axios.get("http://192.168.11.45:3000/song/url", {
         params: {
           id: this.id
         }

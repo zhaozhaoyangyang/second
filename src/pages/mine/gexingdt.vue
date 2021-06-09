@@ -24,7 +24,7 @@ export default {
   methods: {
     async getdt() {
       const result = await reqHot({ limit: 10 });
-      console.log(result.data);
+      // console.log(result.data);
       this.hotList = result.data.djRadios;
     },
   },

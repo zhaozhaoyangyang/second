@@ -22,9 +22,9 @@ export default {
   methods: {
     async getGedan() {
       const result = await reqSong();
-      console.log(result);
+      // console.log(result);
       this.obj = result.data.data.dailySongs;
-      console.log(this.obj);
+      // console.log(this.obj);
     },
   },
   created() {

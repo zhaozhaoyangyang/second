@@ -23,7 +23,7 @@ export default {
   methods: {
     async getGeshou() {
       const result = await getSinger();
-      console.log(result);
+      // console.log(result);
       this.obj = result.data.artists;
     },
   },

@@ -28,7 +28,22 @@ const router = new VueRouter({
       path: "/",
       redirect: "/sy",
     },
-
+    {
+      path: "/geshou/:id",
+      component: () => import("../pages/geshou"),
+      meta: {
+        headerShow: false,
+        footerShow: false
+      }
+    },
+    {
+      path: "/every",
+      component: () => import("../pages/every"),
+      meta: {
+        headerShow: false,
+        footerShow: true
+      }
+    },
     {
       path: "/reg",
       component: () => import("../pages/reg"),
@@ -109,14 +124,16 @@ const router = new VueRouter({
       meta: {
         headerShow: false,
         footerShow: true,
-
+        //傻狗442
         backshow: false,
       },
     },
     {
+
       path: "/xiaoxi",
       component: () => import("../pages/mine/xiaoxi"),
       meta: {
+
         headerShow: true,
         footerShow: true,
 
@@ -127,7 +144,7 @@ const router = new VueRouter({
       path: "/chuangzuo",
       component: () => import("../pages/mine/chuangzuo"),
       meta: {
-        headerShow: true,
+        headerShow: false,
         footerShow: true,
 
         backshow: true,
@@ -137,6 +154,7 @@ const router = new VueRouter({
       path: "/geshou",
       component: () => import("../pages/mine/geshou"),
       meta: {
+
         headerShow: true,
         footerShow: true,
 
@@ -148,7 +166,7 @@ const router = new VueRouter({
       component: () => import("../pages/mine/gexingdt"),
       meta: {
         headerShow: true,
-        footerShow: true,
+        footerShow: false,
 
         backshow: true,
       },
@@ -158,7 +176,7 @@ const router = new VueRouter({
       component: () => import("../pages/mine/gedan"),
       meta: {
         headerShow: true,
-        footerShow: true,
+        footerShow: false,
 
         backshow: true,
       },

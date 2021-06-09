@@ -22,9 +22,9 @@ export default {
   methods: {
     async Getgedan() {
       const result = await reqGd();
-      console.log(result.data);
+      // console.log(result.data);
       this.obj = result.data.result;
-      console.log(this.obj);
+      // console.log(this.obj);
     },
   },
   created() {
