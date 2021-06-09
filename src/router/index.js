@@ -28,7 +28,22 @@ const router = new VueRouter({
       path: "/",
       redirect: "/sy",
     },
-
+    {
+      path: "/geshou/:id",
+      component: () => import("../pages/geshou"),
+      meta: {
+        headerShow: false,
+        footerShow: false
+      }
+    },
+    {
+      path: "/every",
+      component: () => import("../pages/every"),
+      meta: {
+        headerShow: false,
+        footerShow: true
+      }
+    },
     {
       path: "/reg",
       component: () => import("../pages/reg"),
@@ -114,12 +129,12 @@ const router = new VueRouter({
       },
     },
     {
-    path: "/chuangzuo",
-    component: () => import("../pages/mine/chuangzuo"),
-    meta: {
-      headerShow: false,
-      footerShow: true,
-    },
+      path: "/chuangzuo",
+      component: () => import("../pages/mine/chuangzuo"),
+      meta: {
+        headerShow: false,
+        footerShow: true,
+      },
     },
   ],
   linkActiveClass: "active",
