@@ -1,6 +1,6 @@
 <template>
   <div class="xiaoxi">
-    <div class="top" v-for="v in obj.slice(0, 30)" :key="v.id">
+    <div class="top" v-for="v in obj.slice(0, 50)" :key="v.id">
       <img :src="v.al.picUrl" alt="" />
       <span>{{ v.name }}</span>
     </div>
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { reqSixin } from "../../api/login";
+import { reqSong } from "../../api/banner";
 export default {
   components: {},
   data() {
@@ -20,15 +20,15 @@ export default {
   watch: {},
 
   methods: {
-    async getSixin() {
-      const result = await reqSixin();
+    async getGedan() {
+      const result = await reqSong();
       console.log(result);
       this.obj = result.data.data.dailySongs;
       console.log(this.obj);
     },
   },
   created() {
-    this.getSixin();
+    this.getGedan();
   },
   mounted() {},
   beforeCreate() {},

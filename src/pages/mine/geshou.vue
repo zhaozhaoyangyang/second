@@ -1,7 +1,6 @@
 <template>
   <div class="geshou">
-    gehsou
-    <div class="singList" v-for="item in obj.slice(0, 20)" :key="item.id">
+    <div class="singList" v-for="item in obj.slice(0, 30)" :key="item.id">
       <img :src="item.img1v1Url" alt="" @click="btn(item.id)" />
       <p>{{ item.name }}</p>
     </div>
@@ -9,7 +8,7 @@
 </template>
 
 <script>
-import getGeshou from "../../api/login";
+import { getSinger } from "../../api/fl";
 export default {
   components: {},
   data() {
@@ -23,7 +22,7 @@ export default {
 
   methods: {
     async getGeshou() {
-      const result = await getGeshou();
+      const result = await getSinger();
       console.log(result);
       this.obj = result.data.artists;
     },
@@ -38,4 +37,12 @@ export default {
   updated() {},
 };
 </script>
-<style scoped></style>
+<style scoped>
+.singList {
+  float: left;
+}
+.singList img {
+  width: 175px;
+  padding: 6px;
+}
+</style>

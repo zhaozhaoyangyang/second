@@ -1,17 +1,17 @@
 <template>
   <div class="bar-progress">
-    <span class="text">00:00</span>
+    <span class="text">{{currentTime | formatTime}}</span>
     <div class="bar" ref="bar" :style="{backgroundImage:backgroundStyle}">
       <span class="icon" ref="icon"></span>
     </div>
-    <span class="text">00:00</span>
+    <span class="text">{{duration|formatTime}}</span>
   </div>
 </template>
 
 <script>
 export default {
   components: {},
-  props: ["value"],
+  props: ["value",'duration','currentTime'],
   data() {
     return {};
   },
@@ -21,6 +21,24 @@ export default {
           const a = this.value*100;
           return `linear-gradient(to right,#fc0d58 0%,#fc0d58 ${a}%, #c7bfbf ${a}%,#c7bfbf 100%)`
       }
+  },
+  filters:{
+    formatTime(value){
+        // console.log(value);
+        //计算分
+        let mins = Math.floor(value/60)
+        mins=mins>9?mins:('0'+mins)
+        //秒
+        let second = Math.floor(value%60)
+        second=second>9?second:('0'+second)
+        // if(mins<10){
+        //   mins = '0'+mins
+        // }
+        // if(second<10){
+        //   second = '0'+second;
+        // }
+        return `${mins}:${second}`
+    }
   },
   watch: {
     value: {

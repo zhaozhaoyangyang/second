@@ -21,35 +21,39 @@
     </div>
     <div class="xinxi">
       <p @click="btn">
-        <van-icon name="envelop-o" /><span>我的消息</span><span>></span>
+        <van-icon name="envelop-o" /><span>歌单消息</span><span>></span>
       </p>
       <p><van-icon name="envelop-o" /><span>云贝中心</span><span>></span></p>
-      <p>
-        <van-icon name="envelop-o" /><span>创作者中心</span><span>></span>
+      <p @click="btn3">
+        <van-icon name="service-o" /><span>打碟</span><span>></span>
       </p>
     </div>
     <div class="yinyue">
       <p>音乐服务</p>
       <p><van-icon name="envelop-o" /><span>云村有票</span><span>></span></p>
       <p @click="btnn">
-        <van-icon name="envelop-o" /><span>歌手</span><span>></span>
+        <van-icon name="service-o" /><span>歌手</span><span>></span>
       </p>
-      <p><van-icon name="envelop-o" /><span>游戏专区</span><span>></span></p>
-      <p><van-icon name="envelop-o" /><span>口袋彩铃</span><span>></span></p>
+      <p @click="btn1">
+        <van-icon name="service-o" /><span>个性电台</span><span>></span>
+      </p>
+      <p><van-icon name="service-o" /><span>口袋彩铃</span><span>></span></p>
+    </div>
+    <div class="qita">
+      <p>娱乐</p>
+      <p><van-icon name="envelop-o" /><span>酷玩</span><span>></span></p>
+      <p><van-icon name="envelop-o" /><span>切换模式</span><span>></span></p>
+    </div>
+    <div class="qita">
+      <p>推荐</p>
+      <p @click="btn2">
+        <van-icon name="service-o" /><span>推荐音乐</span><span>></span>
+      </p>
+      <p><van-icon name="envelop-o" /><span>异空间</span><span>></span></p>
     </div>
     <div class="qita">
       <p>其他</p>
-      <p><van-icon name="envelop-o" /><span>设置</span><span>></span></p>
-      <p><van-icon name="envelop-o" /><span>夜间模式</span><span>></span></p>
-    </div>
-    <div class="qita">
-      <p>其他</p>
-      <p><van-icon name="envelop-o" /><span>设置</span><span>></span></p>
-      <p><van-icon name="envelop-o" /><span>夜间模式</span><span>></span></p>
-    </div>
-    <div class="qita">
-      <p>其他</p>
-      <p><van-icon name="envelop-o" /><span>设置</span><span>></span></p>
+      <p><van-icon name="setting-o" /><span>设置</span><span>></span></p>
       <p><van-icon name="envelop-o" /><span>夜间模式</span><span>></span></p>
     </div>
     <button style="margin-bottom: 75px; margin-top:10px" @click="tuichu">
@@ -79,9 +83,19 @@ export default {
     btn() {
       this.$router.push("/xiaoxi");
     },
+    btn3() {
+      this.$router.push("/chuangzuo");
+    },
     btnn() {
       this.$router.push("/geshou");
     },
+    btn1() {
+      this.$router.push("/gexingdt");
+    },
+    btn2() {
+      this.$router.push("/gedan");
+    },
+
     denglu() {
       this.$router.push("/login");
     },
@@ -151,7 +165,7 @@ export default {
   top: 200px;
   left: 60px;
 }
-.top p {
+.top p:nth-child(2) {
   margin-left: 245px;
 }
 .top1 {
@@ -211,7 +225,7 @@ export default {
 .qita {
   width: 90%;
   height: 130px;
-  background: rgb(237, 241, 241);
+  background: rgb(242, 245, 245);
   margin: 0 auto;
   margin-top: 10px;
   border-radius: 20px;
@@ -219,7 +233,7 @@ export default {
 .yinyue {
   width: 90%;
   height: 160px;
-  background: rgb(237, 241, 241);
+  background: rgb(242, 245, 245);
   margin: 0 auto;
   margin-top: 10px;
   border-radius: 20px;
