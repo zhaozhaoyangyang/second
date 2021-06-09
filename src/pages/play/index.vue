@@ -74,7 +74,7 @@ export default {
       }
       this.getMusic();
       this.$nextTick(() => {
-        console.log(this.audio);
+        // console.log(this.audio);
         this.audio.load();
         this.audio.play();
       });

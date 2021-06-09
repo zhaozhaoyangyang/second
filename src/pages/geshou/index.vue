@@ -68,7 +68,7 @@ export default {
     async gsxiangqing(params) {
       const res = await reqartist(params);
       this.gs = res.data.data.artist;
-      console.log(this.gs);
+      // console.log(this.gs);
       this.gsgedan({ id: this.id });
     },
     async gsgedan(params) {

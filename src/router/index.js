@@ -144,7 +144,7 @@ const router = new VueRouter({
       path: "/chuangzuo",
       component: () => import("../pages/mine/chuangzuo"),
       meta: {
-        headerShow: true,
+        headerShow: false,
         footerShow: true,
 
         backshow: true,

@@ -110,7 +110,7 @@ export default {
     //歌手列表
     async getsing() {
       const result = await getSinger();
-      console.log(result);
+      // console.log(result);
       this.arr = result.data.artists;
     },
     btn(id) {
@@ -122,7 +122,7 @@ export default {
       const result = await reqGd();
       // console.log(result);
       this.obj = result.data.result;
-      console.log(this.obj);
+      // console.log(this.obj);
     },
     //新碟
     async getdd() {

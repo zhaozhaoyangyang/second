@@ -91,9 +91,9 @@ export default {
     },
     async gedan() {
       const res = await reqnewsong();
-      console.log(res);
+      // console.log(res);
       this.tjgd = res.data.result;
-      console.log(this.tjgd);
+      // console.log(this.tjgd);
     },
     bo(id) {
       console.log(id);
