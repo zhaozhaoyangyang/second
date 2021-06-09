@@ -32,18 +32,22 @@
       <p @click="btnn">
         <van-icon name="envelop-o" /><span>歌手</span><span>></span>
       </p>
-      <p><van-icon name="envelop-o" /><span>游戏专区</span><span>></span></p>
+      <p @click="btn1">
+        <van-icon name="envelop-o" /><span>个性电台</span><span>></span>
+      </p>
       <p><van-icon name="envelop-o" /><span>口袋彩铃</span><span>></span></p>
     </div>
     <div class="qita">
-      <p>其他</p>
-      <p><van-icon name="envelop-o" /><span>设置</span><span>></span></p>
-      <p><van-icon name="envelop-o" /><span>夜间模式</span><span>></span></p>
+      <p>娱乐</p>
+      <p><van-icon name="envelop-o" /><span>个性设置</span><span>></span></p>
+      <p><van-icon name="envelop-o" /><span>切换模式</span><span>></span></p>
     </div>
     <div class="qita">
-      <p>其他</p>
-      <p><van-icon name="envelop-o" /><span>设置</span><span>></span></p>
-      <p><van-icon name="envelop-o" /><span>夜间模式</span><span>></span></p>
+      <p>推荐</p>
+      <p @click="btn2">
+        <van-icon name="envelop-o" /><span>音乐</span><span>></span>
+      </p>
+      <p><van-icon name="envelop-o" /><span>异空间</span><span>></span></p>
     </div>
     <div class="qita">
       <p>其他</p>
@@ -79,6 +83,12 @@ export default {
     },
     btnn() {
       this.$router.push("/geshou");
+    },
+    btn1() {
+      this.$router.push("/gexingdt");
+    },
+    btn2() {
+      this.$router.push("/gedan");
     },
     denglu() {
       this.$router.push("/login");
